@@ -1,77 +1,100 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HorizontalCard from "../components/HorizontalCard.astro";
-import { getCollection } from "astro:content";
+import {getCollection} from "astro:content";
+import { ViewTransitions } from 'astro:transitions';
 
 const posts = (await getCollection("blog")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 const last_posts = posts.slice(0, 3);
 ---
+<ViewTransitions />
 
 <BaseLayout sideBarActiveItemID="home">
-  <div class="pb-12 mt-5">
-    <div class="text-xl py-1">Hey there 👋</div>
-    <div class="text-5xl font-bold">I'm Manuel Ernesto</div>
-    <div class="text-3xl py-3 font-bold">Software Engineer and Entrepreneur</div>
-    <div class="py-2">
-      <text class="text-lg">
-        This is <b>Astrofy</b> a free and open-source template for your Personal Portfolio Website built with Astro and TailwindCSS.
-        Create in minutes a website with Blog, CV, Project Section, Store and RSS Feed. I hope you find
-        it useful!
-      </text>
+    
+    <div class="pb-12 mt-5">
+        <div class="text-xl py-1">Hey there 👋</div>
+        <div class="text-5xl font-bold">I'm Harsh Patel</div>
+        <div class="text-3xl py-3 font-bold">Crafting seamless backends, Bots and Discord Servers</div>
+        <div class="py-2">
+            <text class="text-lg">
+                I am a sophomore undergrad dedicated to the pursuit of a Computer Science and Engineering degree,
+                backed by a formidable two-year freelance tenure as a Backend and Bot Developer. My relentless
+                enthusiasm for cutting-edge technologies and unwavering commitment to open source initiatives propel my
+                journey in this field. Proficient in an array of technologies, TypeScript stands as a strong pillar in
+                my repertoire, while my future aspirations include improving my skills in GoLang. <br/> <br/>
+
+                In my role as a Freelance Bot Developer on Fiverr, I have had the privilege of crafting tailored Discord
+                bots for over 15 clients, including distinguished names such as Katana Inu, Zavage, and Expertrons.
+                Beyond bot development, I provide comprehensive auditing services to ensure the optimal functionality of
+                these creations.<br/><br/>
+
+                My professional odyssey has led me to assume pivotal technical internships and roles, notably as a
+                Technical Associate Lead at srmKzilla and Technical Lead at FOSS SRM. These experiences have bestowed
+                upon me invaluable practical application development insights and have finely honed my project
+                management and leadership acumen.<br/><br/>
+
+                Currently, my focal point resides in constructing robust backends utilizing NestJS and TypeScript, with
+                a determined pursuit of mastering Golang on the horizon. My dedication to the technology realm is
+                unshakable, and I remain open to forging connections, fostering collaborations, and embarking on novel
+                projects.<br/><br/>
+
+                For further inquiries or collaboration opportunities, please do not hesitate to reach out to me at
+                iam.harshnpatel@gmail.com.
+            </text>
+        </div>
+        <div class="mt-8">
+            <a class="btn" href="https://linkedin.com/HarshPatel5940" target="_blank"> Let's connect!</a>
+            <a href="https://github.com/HarshPatel5940" target="_blank" class="btn btn-outline ml-5">
+                Check My Github
+            </a>
+        </div>
     </div>
-    <div class="mt-8">
-      <a class="btn" href="https://twitter.com/manuelernestog" target="_blank"> Let's connect!</a>
-      <a href="https://github.com/manuelernestog/astrofy" target="_blank" class="btn btn-outline ml-5">
-        Get This template
-      </a>
+
+    <div>
+        <div class="text-3xl w-full font-bold mb-2">My last projects {"</>"}</div>
     </div>
-  </div>
 
-  <div>
-    <div class="text-3xl w-full font-bold mb-2">My last projects {"</>"}</div>
-  </div>
+    <HorizontalCard
+            title="Demo Project 1"
+            img="/post_img.webp"
+            desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            url="#"
+            badge="NEW"
+    />
+    <div class="divider my-0"></div>
+    <HorizontalCard
+            title="Demo Project 2"
+            img="/post_img.webp"
+            desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            url="#"
+    />
+    <div class="divider my-0"></div>
+    <HorizontalCard
+            title="Demo Project 3"
+            img="/post_img.webp"
+            desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            url="#"
+            badge="FOSS"
+    />
 
-  <HorizontalCard
-    title="Demo Project 1"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="NEW"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 2"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 3"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="FOSS"
-  />
-
-  <div>
-    <div class="text-3xl w-full font-bold mb-5 mt-10">Latest from blog</div>
-  </div>
-
-  {
-    last_posts.map((post) => (
-      <>
-        <HorizontalCard
-          title={post.data.title}
-          img={post.data.heroImage}
-          desc={post.data.description}
-          url={"/blog/" + post.slug}
-          target="_self"
-          badge={post.data.badge}
-        />
-        <div class="divider my-0" />
-      </>
-    ))
-  }
+    <div>
+        <div class="text-3xl w-full font-bold mb-5 mt-10">Latest from blog</div>
+    </div>
+    
+    {
+        last_posts.map((post) => (
+                <>
+                    <HorizontalCard
+                            title={post.data.title}
+                            img={post.data.heroImage}
+                            desc={post.data.description}
+                            url={"/blog/" + post.slug}
+                            target="_self"
+                            badge={post.data.badge}
+                    />
+                    <div class="divider my-0"/>
+                </>
+        ))
+    }
 </BaseLayout>
