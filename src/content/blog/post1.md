@@ -6,7 +6,7 @@ heroImage: "https://media.licdn.com/dms/image/D5616AQEvnzpDu-PL_g/profile-displa
 tags: ["SRM", "DSA", "Academics"]
 ---
 
-# What is thie blog / page about?
+# What is this blog / page about?
 
 This page will be listing down all the necessary details required for the portfolio creation for the subject of DSA subject.
 
