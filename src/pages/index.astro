@@ -1,9 +1,11 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HorizontalCard from "../components/HorizontalCard.astro";
-import {getCollection} from "astro:content";
+import { getCollection } from "astro:content";
 
-const posts = (await getCollection("blog")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const posts = (await getCollection("blog")).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
 
 const last_posts = posts.slice(0, 3);
 ---
@@ -49,13 +51,14 @@ const last_posts = posts.slice(0, 3);
         <div class="text-3xl w-full font-bold mb-2">My Projects {"</>"}</div>
     </div>
 
+
     <HorizontalCard
-            title="Discord Helper Bot"
-            img="https://repository-images.githubusercontent.com/451373966/9d750ab6-a9d5-472c-b8f5-a37c0ce43ba4"
-            desc="A Custom Utility Discord Bot made using Discord.js and TypeScript"
-            url="https://github.com/harshpatel5940/discord-helper-bot"
-            badge="Discord-Bot"
-            tags={["TypeScript", "Discord.js", "Node.js", "MongoDB"]}
+            title="EzMs-Frontend"
+            img="https://repository-images.githubusercontent.com/733384623/1292b76c-542b-46d1-89fb-0e1840f67e50"
+            desc="A Clean, simple Frontend made to manage the CMS API using React and Typescript"
+            url="https://github.com/harshpatel5940/ezms-frontend"
+            badge="Backend-API"
+            tags={["TypeScript", "React", "CMS", "Website", "Frontend"]}
     />
     <div class="divider my-0"></div>
     <HorizontalCard
@@ -66,6 +69,15 @@ const last_posts = posts.slice(0, 3);
             badge="Backend-API"
             tags={["TypeScript", "NestJs", "CMS", "API", "PostgreSQL"]}
     />
+    <div class="divider my-0"></div>
+    <HorizontalCard
+    title="Discord Helper Bot"
+    img="https://repository-images.githubusercontent.com/451373966/9d750ab6-a9d5-472c-b8f5-a37c0ce43ba4"
+    desc="A Custom Utility Discord Bot made using Discord.js and TypeScript"
+    url="https://github.com/harshpatel5940/discord-helper-bot"
+    badge="Discord-Bot"
+    tags={["TypeScript", "Discord.js", "Node.js", "MongoDB"]}
+/>
 
     <div>
         <div class="text-3xl w-full font-bold mb-5 mt-10">Latest from blog</div>
