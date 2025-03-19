@@ -4,45 +4,67 @@ import HorizontalCard from "../components/HorizontalCard.astro";
 import { getCollection } from "astro:content";
 
 const posts = (await getCollection("blog")).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 
 const last_posts = posts.slice(0, 3);
 ---
 
 <BaseLayout sideBarActiveItemID="home">
-
     <div class="pb-12 mt-5">
         <div class="text-xl py-1">Hey there 👋</div>
         <div class="text-5xl font-bold">I'm Harsh Patel</div>
-        <div class="text-3xl py-3 font-bold">Crafting seamless backends, Bots and Discord Servers</div>
+        <div class="text-3xl py-3 font-bold">
+            Crafting seamless backends, Bots and Discord Servers
+        </div>
         <div class="py-2">
             <text class="text-lg">
-                I am a sophomore undergrad dedicated to the pursuit of a Computer Science and Engineering degree,
-                backed by a formidable two-year freelance tenure as a Backend and Bot Developer. My relentless
-                enthusiasm for cutting-edge technologies and unwavering commitment to open source initiatives propel my
-                journey in this field. Proficient in an array of technologies, TypeScript stands as a strong pillar in
-                my array, while my future aspirations include improving my skills in GoLang. <br/> <br/>
-                
-                In my role as a Freelance Bot Developer on Fiverr, I have had the privilege of working with over 15
-                clients, including distinguished names such as Katana Inu, Zavage, and Expertrons. Beyond bot
-                development, I also provide discord auditing services to ensure optimal functionality.<br/><br/>
+                I am a junior undergrad dedicated to the pursuit of a Computer
+                Science and Engineering degree, backed by a formidable
+                three-year freelance tenure as a Backend and Bot Developer.
+                Currently, I have fun in Golang and TypeScript. My relentless
+                enthusiasm for cutting-edge technologies and unwavering
+                commitment to open source initiatives propel my journey in this
+                field.<br />
+                <br />
 
-                Currently, my focal point resides in constructing robust backends utilizing NestJS, ExpressJs and
-                TypeScript, with a determined pursuit of mastering Golang on the horizon. My dedication to the
-                technology realm is
-                unshakable, and I remain open to forging connections, fostering collaborations, and embarking on novel
-                projects.<br/><br/>
+                In my role as a Freelance Bot Developer on Fiverr, I have had
+                the privilege of working with over 15 clients, including
+                distinguished names such as Katana Inu, Zavage, and Expertrons.
+                Beyond bot development, I also provide discord auditing services
+                to ensure optimal functionality.<br /><br />
 
-                For further inquiries or collaboration opportunities, please do not hesitate to reach out to me at
-                <a href="mailto:iam.harshnpatel@gmail.com" target="blank=">iam.harshnpatel@gmail.com</a>.
+                <br /><br />
+
+                For further inquiries or collaboration opportunities, please do
+                not hesitate to reach out to me at
+                <a href="mailto:iam.harshnpatel@gmail.com" target="blank="
+                    >iam.harshnpatel@gmail.com</a
+                >.
             </text>
         </div>
         <div class="flex mt-8">
-            <a class="btn flex" href="https://linkedin.com/in/HarshPatel5940" target="_blank"> Let's connect!</a>
-            <a class="btn ml-5 flex" href="/Harsh_Nikul_Patel_Resume.pdf" download="Harsh_Nikul_Patel.pdf" target="_blank"> Download CV!</a> 
-            <a href="https://github.com/HarshPatel5940" target="_blank" class="btn btn-outline ml-5 flex">
-                Check My Github
+            <a
+                class="btn ml-5 flex"
+                href="/Harsh_Nikul_Patel_Resume.pdf"
+                download="Harsh_Nikul_Patel.pdf"
+                target="_blank"
+            >
+                Download CV!</a
+            >
+            <a
+                href="https://github.com/HarshPatel5940"
+                target="_blank"
+                class="btn btn-outline ml-5 flex"
+            >
+                My Github
+            </a>
+            <a
+                href="https://bento.me/harshnpatel"
+                target="_blank"
+                class="btn btn-outline ml-5 flex"
+            >
+                My Bento
             </a>
         </div>
     </div>
@@ -51,51 +73,50 @@ const last_posts = posts.slice(0, 3);
         <div class="text-3xl w-full font-bold mb-2">My Projects {"</>"}</div>
     </div>
 
-
     <HorizontalCard
-            title="EzMs-Frontend"
-            img="https://repository-images.githubusercontent.com/733384623/1292b76c-542b-46d1-89fb-0e1840f67e50"
-            desc="A Clean, simple Frontend made to manage the CMS API using React and Typescript"
-            url="https://github.com/harshpatel5940/ezms-frontend"
-            badge="CMS-Frontend"
-            tags={["TypeScript", "React", "CMS", "Website", "Frontend"]}
+        title="EzMs-Frontend"
+        img="https://repository-images.githubusercontent.com/733384623/1292b76c-542b-46d1-89fb-0e1840f67e50"
+        desc="A Clean, simple Frontend made to manage the CMS API using React and Typescript"
+        url="https://github.com/harshpatel5940/ezms-frontend"
+        badge="CMS-Frontend"
+        tags={["TypeScript", "React", "CMS", "Website", "Frontend"]}
     />
     <div class="divider my-0"></div>
     <HorizontalCard
-            title="EzMs-Backend"
-            img="https://repository-images.githubusercontent.com/654061696/0dac8f4c-53e9-4ca9-823e-df9afd606b4d"
-            desc="Robust Backend for an Content Management System made using NestJs and TypeScript"
-            url="https://github.com/harshpatel5940/ezms-backend"
-            badge="Backend-API"
-            tags={["TypeScript", "NestJs", "CMS", "API", "PostgreSQL"]}
+        title="EzMs-Backend"
+        img="https://repository-images.githubusercontent.com/654061696/0dac8f4c-53e9-4ca9-823e-df9afd606b4d"
+        desc="Robust Backend for an Content Management System made using NestJs and TypeScript"
+        url="https://github.com/harshpatel5940/ezms-backend"
+        badge="Backend-API"
+        tags={["TypeScript", "NestJs", "CMS", "API", "PostgreSQL"]}
     />
     <div class="divider my-0"></div>
     <HorizontalCard
-    title="Discord Helper Bot"
-    img="https://repository-images.githubusercontent.com/451373966/9d750ab6-a9d5-472c-b8f5-a37c0ce43ba4"
-    desc="A Custom Utility Discord Bot made using Discord.js and TypeScript"
-    url="https://github.com/harshpatel5940/discord-helper-bot"
-    badge="Discord-Bot"
-    tags={["TypeScript", "Discord.js", "Node.js", "MongoDB"]}
-/>
+        title="Discord Helper Bot"
+        img="https://repository-images.githubusercontent.com/451373966/9d750ab6-a9d5-472c-b8f5-a37c0ce43ba4"
+        desc="A Custom Utility Discord Bot made using Discord.js and TypeScript"
+        url="https://github.com/harshpatel5940/discord-helper-bot"
+        badge="Discord-Bot"
+        tags={["TypeScript", "Discord.js", "Node.js", "MongoDB"]}
+    />
 
     <div>
         <div class="text-3xl w-full font-bold mb-5 mt-10">Latest from blog</div>
     </div>
-    
+
     {
         last_posts.map((post) => (
-                <>
-                    <HorizontalCard
-                            title={post.data.title}
-                            img={post.data.heroImage}
-                            desc={post.data.description}
-                            url={"/blog/" + post.slug}
-                            target="_self"
-                            badge={post.data.badge}
-                    />
-                    <div class="divider my-0"/>
-                </>
+            <>
+                <HorizontalCard
+                    title={post.data.title}
+                    img={post.data.heroImage}
+                    desc={post.data.description}
+                    url={"/blog/" + post.slug}
+                    target="_self"
+                    badge={post.data.badge}
+                />
+                <div class="divider my-0" />
+            </>
         ))
     }
 </BaseLayout>
