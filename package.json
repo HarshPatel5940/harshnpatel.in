@@ -17,11 +17,15 @@
     "@astrojs/sitemap": "3.4.1",
     "@astrojs/tailwind": "^6.0.2",
     "@astrojs/vercel": "^8.2.0",
+    "@vercel/analytics": "^1.5.0",
     "astro": "^5.10.1",
     "daisyui": "^4.12.10",
     "dayjs": "^1.11.12",
     "sharp": "^0.33.4",
     "tailwindcss": "^3.4.7"
+  },
+  "engines": {
+    "node": ">=22.16.0"
   },
   "packageManager": "pnpm@10.12.2",
   "devDependencies": {
