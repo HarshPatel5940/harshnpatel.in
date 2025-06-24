@@ -5,6 +5,6 @@ import {defineConfig} from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://hp8823.vercel.app',
+    site: 'https://harshnpatel.in',
     integrations: [mdx(), sitemap(), tailwind()]
 });

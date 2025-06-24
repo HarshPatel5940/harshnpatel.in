@@ -5,25 +5,67 @@ import HorizontalCard from "../components/HorizontalCard.astro";
 
 <BaseLayout title="Projects" sideBarActiveItemID="projects">
     <div>
-        <div class="text-3xl w-full font-bold mb-5">My OpenSource Projects</div>
+        <div class="text-3xl w-full font-bold mb-5">My Projects</div>
     </div>
-
     <HorizontalCard
-        title="EzMs-Frontend"
-        img="https://repository-images.githubusercontent.com/733384623/1292b76c-542b-46d1-89fb-0e1840f67e50"
-        desc="A Clean, simple Frontend made to manage the CMS API using React and Typescript"
-        url="https://github.com/harshpatel5940/ezms-frontend"
-        badge="CMS-Frontend"
-        tags={["TypeScript", "React", "CMS", "Website", "Frontend"]}
+        title="Marai"
+        desc="Legal Workflow and Contract Lifecycle Management System"
+        url="https://github.com/ProgrammingNotJustCoding/marai"
+        tags={["TypeScript", "NestJS", "React", "PostgreSQL", "Docker", "AWS"]}
     />
     <div class="divider my-0"></div>
+    <HorizontalCard
+        title="CodeFlick"
+        desc="Open-source alternative to PasteBin built with Go"
+        url="https://github.com/HarshPatel5940/CodeFlick"
+        badge="NEW"
+        tags={["Go", "HTML/CSS", "JavaScript", "SQLite", "Docker"]}
+    />
+    <div class="divider my-0"></div>
+    <HorizontalCard
+        title="DHB-V2"
+        desc="Multi-Utility Discord Bot with advanced features. Latest version of the original 'Discord Helper Bot\'"
+        url="https://github.com/HarshPatel5940/dhb-v2"
+        badge="New "
+        tags={["TypeScript", "Discord.js", "MongoDB", "Node.js"]}
+    />
+    <div class="divider my-0"></div>
+    <div class="divider my-0"></div>
+    <HorizontalCard
+        title="Jiva"
+        desc="Productivity and safety management app for coal mines."
+        url="https://github.com/ProgrammingNotJustCoding/jiva"
+        badge="Research & Contributor"
+        tags={[
+            "TypeScript",
+            "React Native",
+            "NestJS",
+            "PostgreSQL",
+            "IoT Integration",
+        ]}
+    />
     <HorizontalCard
         title="EzMs-Backend"
         img="https://repository-images.githubusercontent.com/654061696/0dac8f4c-53e9-4ca9-823e-df9afd606b4d"
         desc="Robust Backend for an Content Management System made using NestJs and TypeScript"
         url="https://github.com/harshpatel5940/ezms-backend"
         badge="Backend-API"
-        tags={["TypeScript", "NestJs", "CMS", "API", "PostgreSQL"]}
+        tags={[
+            "TypeScript",
+            "NestJS",
+            "PostgreSQL",
+            "JWT",
+            "Docker",
+            "Swagger",
+        ]}
+    />
+    <div class="divider my-0"></div>
+    <HorizontalCard
+        title="EzMs-Frontend"
+        img="https://repository-images.githubusercontent.com/733384623/1292b76c-542b-46d1-89fb-0e1840f67e50"
+        desc="A Clean, simple Frontend made to manage the CMS API using React and Typescript"
+        url="https://github.com/harshpatel5940/ezms-frontend"
+        tags={["TypeScript", "React", "CMS", "Website", "Frontend"]}
     />
     <div class="divider my-0"></div>
     <HorizontalCard
@@ -32,6 +74,7 @@ import HorizontalCard from "../components/HorizontalCard.astro";
         desc="A Custom Utility Discord Bot made using Discord.js and TypeScript"
         url="https://github.com/harshpatel5940/discord-helper-bot"
         badge="Discord-Bot"
-        tags={["TypeScript", "Discord.js", "Node.js", "MongoDB"]}
+        tags={["JavaScript", "Discord.js", "SQLite"]}
     />
+    <div class="divider my-0"></div>
 </BaseLayout>
