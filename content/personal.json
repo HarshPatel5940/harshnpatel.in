@@ -1,0 +1,29 @@
+{
+  "personal": {
+    "name": "Harsh Nikul Patel",
+    "title": "Student • Developer • FreeLancer",
+    "tagline": "Hello there! I am Harsh Patel ✌️",
+    "location": "India",
+    "email": "harsh@harshnpatel.in",
+    "description": "Software Freak & Tech Enthusiast studying BTech CSE w/s in Cloud Computing @ SRM'26"
+  },
+  "bio": {
+    "education": "Studying Btech CSE w/s in Cloud Computing @ SRM'26",
+    "passion": "Software Freak & Tech Enthusiast",
+    "hobbies": "Listening to Music and exploring the tech world",
+    "mission": "Reminding People To Think beyond Syntax",
+    "organization": "ProgrammingNotJustCoding"
+  },
+  "links": {
+    "fiverr": "https://fiverr.com/harshpatel5940",
+    "twitter": "https://x.com/harshpatel5940",
+    "linkedin": "https://linkedin.com/in/HarshPatel5940",
+    "github": "https://github.com/HarshPatel5940"
+  },
+  "seo": {
+    "title": "Harsh Nikul Patel - Student • Developer • FreeLancer",
+    "description": "Software developer and tech enthusiast specializing in full-stack development, cloud computing, and open-source projects. Currently studying BTech CSE at SRM University.",
+    "keywords": "Harsh Nikul Patel, Software Developer, Full Stack Developer, Student, Freelancer, TypeScript, Go, Node.js, Cloud Computing",
+    "author": "Harsh Nikul Patel"
+  }
+}

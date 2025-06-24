@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title><![CDATA[Harsh Nikul Patel - Blog]]></title>
+    <description><![CDATA[Software developer and tech enthusiast specializing in full-stack development, cloud computing, and open-source projects. Currently studying BTech CSE at SRM University.]]></description>
+    <link>https://harshnpatel.in</link>
+    <atom:link href="https://harshnpatel.in/rss.xml" rel="self" type="application/rss+xml"/>
+    <language>en</language>
+    <lastBuildDate>Tue, 24 Jun 2025 06:16:05 GMT</lastBuildDate>
+    <managingEditor>harsh@harshnpatel.in (Harsh Nikul Patel)</managingEditor>
+    <webMaster>harsh@harshnpatel.in (Harsh Nikul Patel)</webMaster>
+    <generator>Nuxt.js Static Site Generator</generator>
+    <image>
+      <url>https://harshnpatel.in/og-image.png</url>
+      <title><![CDATA[Harsh Nikul Patel - Blog]]></title>
+      <link>https://harshnpatel.in</link>
+    </image>
+    <item>
+      <title><![CDATA[Building Scalable APIs with NestJS: A Complete Guide]]></title>
+      <description><![CDATA[Learn how to build robust and scalable APIs using NestJS framework with TypeScript, including best practices for authentication, validation, and database integration.]]></description>
+      <link>https://harshnpatel.in/blog/building-scalable-apis-with-nestjs</link>
+      <guid isPermaLink="false">building-scalable-apis-with-nestjs</guid>
+      <pubDate>Fri, 15 Mar 2024 00:00:00 GMT</pubDate>
+      <category><![CDATA[Development]]></category>
+      <category><![CDATA[NestJS]]></category>
+      <category><![CDATA[TypeScript]]></category>
+      <category><![CDATA[API]]></category>
+      <category><![CDATA[Backend]]></category>
+      <category><![CDATA[Node.js]]></category>
+    </item>
+    <item>
+      <title><![CDATA[Go vs Node.js: Choosing the Right Backend Technology]]></title>
+      <description><![CDATA[A detailed comparison between Go and Node.js for backend development, covering performance, scalability, ecosystem, and use cases.]]></description>
+      <link>https://harshnpatel.in/blog/go-vs-nodejs-backend-comparison</link>
+      <guid isPermaLink="false">go-vs-nodejs-backend-comparison</guid>
+      <pubDate>Wed, 28 Feb 2024 00:00:00 GMT</pubDate>
+      <category><![CDATA[Technology]]></category>
+      <category><![CDATA[Go]]></category>
+      <category><![CDATA[Node.js]]></category>
+      <category><![CDATA[Backend]]></category>
+      <category><![CDATA[Performance]]></category>
+      <category><![CDATA[Comparison]]></category>
+    </item>
+    <item>
+      <title><![CDATA[Modern Frontend Development with Vue 3 and TypeScript]]></title>
+      <description><![CDATA[Discover the power of Vue 3 composition API combined with TypeScript for building maintainable and type-safe frontend applications.]]></description>
+      <link>https://harshnpatel.in/blog/vue3-typescript-modern-frontend</link>
+      <guid isPermaLink="false">vue3-typescript-modern-frontend</guid>
+      <pubDate>Sat, 10 Feb 2024 00:00:00 GMT</pubDate>
+      <category><![CDATA[Development]]></category>
+      <category><![CDATA[Vue.js]]></category>
+      <category><![CDATA[TypeScript]]></category>
+      <category><![CDATA[Frontend]]></category>
+      <category><![CDATA[Composition API]]></category>
+      <category><![CDATA[JavaScript]]></category>
+    </item>
+    <item>
+      <title><![CDATA[Containerizing Applications with Docker: Best Practices]]></title>
+      <description><![CDATA[Essential Docker practices for containerizing applications, including multi-stage builds, security considerations, and optimization techniques.]]></description>
+      <link>https://harshnpatel.in/blog/docker-containerization-best-practices</link>
+      <guid isPermaLink="false">docker-containerization-best-practices</guid>
+      <pubDate>Sat, 20 Jan 2024 00:00:00 GMT</pubDate>
+      <category><![CDATA[DevOps]]></category>
+      <category><![CDATA[Docker]]></category>
+      <category><![CDATA[DevOps]]></category>
+      <category><![CDATA[Containerization]]></category>
+      <category><![CDATA[Security]]></category>
+      <category><![CDATA[Optimization]]></category>
+    </item>
+    <item>
+      <title><![CDATA[Database Design Patterns for Modern Applications]]></title>
+      <description><![CDATA[Explore common database design patterns and their applications in modern software development, including NoSQL and relational database strategies.]]></description>
+      <link>https://harshnpatel.in/blog/database-design-patterns-modern-apps</link>
+      <guid isPermaLink="false">database-design-patterns-modern-apps</guid>
+      <pubDate>Fri, 05 Jan 2024 00:00:00 GMT</pubDate>
+      <category><![CDATA[Architecture]]></category>
+      <category><![CDATA[Database]]></category>
+      <category><![CDATA[Design Patterns]]></category>
+      <category><![CDATA[MongoDB]]></category>
+      <category><![CDATA[PostgreSQL]]></category>
+      <category><![CDATA[Architecture]]></category>
+    </item>
+    <item>
+      <title><![CDATA[Building Discord Bots: From Beginner to Advanced]]></title>
+      <description><![CDATA[Complete guide to Discord bot development, covering basic commands, slash commands, database integration, and deployment strategies.]]></description>
+      <link>https://harshnpatel.in/blog/discord-bot-development-guide</link>
+      <guid isPermaLink="false">discord-bot-development-guide</guid>
+      <pubDate>Fri, 15 Dec 2023 00:00:00 GMT</pubDate>
+      <category><![CDATA[Tutorial]]></category>
+      <category><![CDATA[Discord.js]]></category>
+      <category><![CDATA[Bot Development]]></category>
+      <category><![CDATA[JavaScript]]></category>
+      <category><![CDATA[TypeScript]]></category>
+      <category><![CDATA[API]]></category>
+    </item>
+    <item>
+      <title><![CDATA[Cloud Computing Fundamentals for Developers]]></title>
+      <description><![CDATA[Introduction to cloud computing concepts, services, and deployment strategies for modern application development.]]></description>
+      <link>https://harshnpatel.in/blog/cloud-computing-fundamentals-developers</link>
+      <guid isPermaLink="false">cloud-computing-fundamentals-developers</guid>
+      <pubDate>Thu, 30 Nov 2023 00:00:00 GMT</pubDate>
+      <category><![CDATA[Cloud]]></category>
+      <category><![CDATA[Cloud Computing]]></category>
+      <category><![CDATA[AWS]]></category>
+      <category><![CDATA[DevOps]]></category>
+      <category><![CDATA[Deployment]]></category>
+      <category><![CDATA[Infrastructure]]></category>
+    </item>
+    <item>
+      <title><![CDATA[The Art of Clean Code: Writing Maintainable Software]]></title>
+      <description><![CDATA[Principles and practices for writing clean, readable, and maintainable code that stands the test of time.]]></description>
+      <link>https://harshnpatel.in/blog/art-of-clean-code-maintainable-software</link>
+      <guid isPermaLink="false">art-of-clean-code-maintainable-software</guid>
+      <pubDate>Fri, 10 Nov 2023 00:00:00 GMT</pubDate>
+      <category><![CDATA[Programming]]></category>
+      <category><![CDATA[Clean Code]]></category>
+      <category><![CDATA[Best Practices]]></category>
+      <category><![CDATA[Software Engineering]]></category>
+      <category><![CDATA[Code Quality]]></category>
+    </item>
+  </channel>
+</rss>

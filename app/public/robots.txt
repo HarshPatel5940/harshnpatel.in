@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://harshnpatel.in/sitemap.xml
+
+# Crawl delay
+Crawl-delay: 1
+
+# Allow important files
+Allow: /rss.xml
+Allow: /sitemap.xml
+
+# Fast crawling for important content
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
