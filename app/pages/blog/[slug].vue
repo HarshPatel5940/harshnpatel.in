@@ -41,8 +41,48 @@
               aria-label="Toggle theme"
               @click="toggleTheme"
             >
-              <span v-if="isDark">🌙</span>
-              <span v-else>☀️</span>
+              <svg
+                v-if="isDark"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                class="theme-icon-sun"
+              >
+                <path
+                  d="M12 2V6M12 18V22M4.93 4.93L7.76 7.76M16.24 16.24L19.07 19.07M2 12H6M18 12H22M4.93 19.07L7.76 16.24M16.24 7.76L19.07 4.93"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="5"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  fill="none"
+                />
+              </svg>
+              <svg
+                v-else
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                class="theme-icon-moon"
+              >
+                <path
+                  d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  fill="currentColor"
+                />
+              </svg>
             </button>
             <NuxtLink
               to="/"
@@ -182,7 +222,7 @@
 
       <!-- Post Content -->
       <div class="prose prose-lg dark:prose-invert max-w-none prose-green">
-        <ContentRenderer :value="post" />
+        <ContentRenderer :value="post" @render="onContentRendered" />
       </div>
 
       <!-- Post Footer -->
@@ -275,33 +315,11 @@
 <script setup>
 const isDark = ref(false);
 
-onMounted(() => {
-  initializeTheme();
-});
-
-function initializeTheme() {
-  const savedTheme = localStorage.getItem("theme");
-  isDark.value =
-    savedTheme === "dark" ||
-    (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches);
-  applyTheme();
-}
-
-function applyTheme() {
-  document.body.className = isDark.value
-    ? "portfolio-body dark"
-    : "portfolio-body light";
-  localStorage.setItem("theme", isDark.value ? "dark" : "light");
-}
-
-function toggleTheme() {
-  isDark.value = !isDark.value;
-  applyTheme();
-}
-
+// Get the slug from the route
 const route = useRoute();
 const slug = route.params.slug;
 
+// Fetch the blog post
 const {
   data: post,
   pending,
@@ -339,6 +357,292 @@ const {
     return null;
   }
 });
+
+// Initialize theme on mount
+onMounted(() => {
+  initializeTheme();
+
+  // Set up mutation observer to watch for content changes
+  if (import.meta.client) {
+    setupContentObserver();
+  }
+});
+
+// Watch for post changes to add copy buttons
+watch(
+  () => post.value,
+  () => {
+    if (import.meta.client) {
+      setTimeout(() => {
+        addCopyButtonsToCodeBlocks();
+      }, 100);
+    }
+  },
+  { deep: true },
+);
+
+// Handle when content is rendered
+function onContentRendered() {
+  setTimeout(() => {
+    addCopyButtonsToCodeBlocks();
+  }, 100);
+}
+
+// Set up mutation observer to detect when content is rendered
+function setupContentObserver() {
+  const observer = new MutationObserver((mutations) => {
+    let shouldAddButtons = false;
+
+    mutations.forEach((mutation) => {
+      if (mutation.type === "childList" && mutation.addedNodes.length > 0) {
+        mutation.addedNodes.forEach((node) => {
+          if (node.nodeType === Node.ELEMENT_NODE) {
+            // Check if any pre elements were added
+            if (
+              node.tagName === "PRE" ||
+              (node.querySelector && node.querySelector("pre"))
+            ) {
+              shouldAddButtons = true;
+            }
+          }
+        });
+      }
+    });
+
+    if (shouldAddButtons) {
+      setTimeout(() => {
+        addCopyButtonsToCodeBlocks();
+      }, 50);
+    }
+  });
+
+  // Start observing the document with the configured parameters
+  const target = document.querySelector(".prose") || document.body;
+  observer.observe(target, {
+    childList: true,
+    subtree: true,
+  });
+}
+
+// Add copy buttons to code blocks
+function addCopyButtonsToCodeBlocks() {
+  if (!import.meta.client) return;
+
+  nextTick(() => {
+    const codeBlocks = document.querySelectorAll(
+      ".prose pre:not(.has-copy-btn)",
+    );
+
+    codeBlocks.forEach((pre) => {
+      const codeBlock = pre.querySelector("code");
+      if (!codeBlock) return;
+
+      // Mark as processed
+      pre.classList.add("has-copy-btn");
+
+      // Create header with copy button
+      const header = document.createElement("div");
+      header.className = "code-header";
+
+      // Debug logging to see what classes we have
+      if (process.dev) {
+        console.log("Code block classes:", codeBlock.className);
+        console.log("Pre element classes:", pre.className);
+        console.log("Code block HTML:", codeBlock.outerHTML.substring(0, 200));
+      }
+
+      // Get language from various sources
+      let language = "text";
+
+      // Method 1: Check code element class attribute
+      const codeLanguageMatch = codeBlock.className.match(/language-(\w+)/);
+      if (codeLanguageMatch) {
+        language = codeLanguageMatch[1];
+        if (process.dev)
+          console.log("Found language from code class:", language);
+      }
+
+      // Method 2: Check pre element class attribute
+      if (language === "text") {
+        const preLanguageMatch = pre.className.match(/language-(\w+)/);
+        if (preLanguageMatch) {
+          language = preLanguageMatch[1];
+          if (process.dev)
+            console.log("Found language from pre class:", language);
+        }
+      }
+
+      // Method 3: Check for highlight.js classes
+      if (language === "text") {
+        const hlMatch = (codeBlock.className + " " + pre.className).match(
+          /(?:^|\s)hljs-(\w+)/,
+        );
+        if (hlMatch) {
+          language = hlMatch[1];
+          if (process.dev)
+            console.log("Found language from highlight.js:", language);
+        }
+      }
+
+      // Method 4: Check data attributes
+      if (language === "text") {
+        const dataLang =
+          codeBlock.getAttribute("data-language") ||
+          pre.getAttribute("data-language");
+        if (dataLang) {
+          language = dataLang;
+          if (process.dev)
+            console.log("Found language from data attribute:", language);
+        }
+      }
+
+      // Method 5: Try to parse from the code content structure
+      if (language === "text") {
+        const firstLine = codeBlock.textContent.split("\n")[0];
+        if (firstLine.includes("```")) {
+          const langMatch = firstLine.match(/```(\w+)/);
+          if (langMatch) {
+            language = langMatch[1];
+            if (process.dev)
+              console.log("Found language from code content:", language);
+          }
+        }
+      }
+
+      // Map common aliases
+      const languageMap = {
+        js: "javascript",
+        ts: "typescript",
+        jsx: "javascript",
+        tsx: "typescript",
+        py: "python",
+        rb: "ruby",
+        sh: "bash",
+        shell: "bash",
+        yml: "yaml",
+        dockerfile: "docker",
+      };
+
+      language = languageMap[language] || language;
+      if (process.dev) console.log("Final language:", language);
+
+      // Create language label
+      const languageLabel = document.createElement("span");
+      languageLabel.className = "code-language";
+      languageLabel.textContent = language;
+
+      // Create copy button
+      const copyButton = document.createElement("button");
+      copyButton.className = "code-copy-btn";
+      copyButton.innerHTML = `
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <span>Copy</span>
+      `;
+      copyButton.setAttribute("aria-label", "Copy code to clipboard");
+
+      // Add click handler
+      copyButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        copyCodeToClipboard(codeBlock, copyButton);
+      });
+
+      // Assemble header
+      header.appendChild(languageLabel);
+      header.appendChild(copyButton);
+
+      // Add header before the code block
+      pre.style.position = "relative";
+      pre.insertBefore(header, codeBlock);
+    });
+  });
+}
+
+// Copy code to clipboard
+async function copyCodeToClipboard(codeElement, button) {
+  if (!import.meta.client) return;
+
+  try {
+    const code = codeElement.textContent || codeElement.innerText;
+    const cleanCode = code.replace(/^\n+|\n+$/g, ""); // Remove leading/trailing newlines
+
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(cleanCode);
+    } else {
+      // Fallback for older browsers or non-HTTPS
+      const textArea = document.createElement("textarea");
+      textArea.value = cleanCode;
+      textArea.style.position = "fixed";
+      textArea.style.left = "-999999px";
+      textArea.style.top = "-999999px";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+
+      const successful = document.execCommand("copy");
+      document.body.removeChild(textArea);
+
+      if (!successful) {
+        throw new Error("Copy command failed");
+      }
+    }
+
+    // Update button appearance
+    const originalHTML = button.innerHTML;
+    const span = button.querySelector("span");
+    if (span) {
+      span.textContent = "Copied!";
+    }
+    button.style.color = "#10b981"; // Green color
+    button.disabled = true;
+
+    // Reset after 2 seconds
+    setTimeout(() => {
+      button.innerHTML = originalHTML;
+      button.style.color = "";
+      button.disabled = false;
+    }, 2000);
+  } catch (err) {
+    console.error("Failed to copy code:", err);
+
+    // Show error state
+    const span = button.querySelector("span");
+    if (span) {
+      span.textContent = "Failed!";
+    }
+    button.style.color = "#ef4444"; // Red color
+
+    setTimeout(() => {
+      const span = button.querySelector("span");
+      if (span) {
+        span.textContent = "Copy";
+      }
+      button.style.color = "";
+    }, 2000);
+  }
+}
+
+function initializeTheme() {
+  const savedTheme = localStorage.getItem("theme");
+  isDark.value =
+    savedTheme === "dark" ||
+    (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches);
+  applyTheme();
+}
+
+function applyTheme() {
+  document.body.className = isDark.value
+    ? "portfolio-body dark"
+    : "portfolio-body light";
+  localStorage.setItem("theme", isDark.value ? "dark" : "light");
+}
+
+function toggleTheme() {
+  isDark.value = !isDark.value;
+  applyTheme();
+}
 
 const currentUrl = computed(() => {
   if (import.meta.client) {
@@ -544,22 +848,118 @@ if (error.value) {
 
 .prose code {
   @apply px-1.5 py-0.5 rounded text-sm font-mono;
-  background: rgba(0, 0, 0, 0.1);
-  color: inherit;
+  font-weight: 500;
+}
+
+.light .prose code {
+  background: rgba(0, 0, 0, 0.05);
+  color: inherit !important;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .dark .prose code {
   background: rgba(255, 255, 255, 0.1);
+  color: inherit !important;
 }
 
 .prose pre {
-  @apply p-4 rounded-lg overflow-x-auto mb-4;
+  @apply rounded-lg overflow-x-auto mb-4;
+  padding: 0;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.light .prose pre {
+  background: #f8f9fa;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: inherit !important;
+}
+
+.dark .prose pre {
   background: rgba(0, 0, 0, 0.8);
-  color: #e5e5e5;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: inherit !important;
 }
 
 .prose pre code {
-  @apply bg-transparent p-0;
+  @apply p-4;
+  background: transparent !important;
+  display: block;
+  margin-top: 0;
+  color: inherit !important;
+  border-radius: 0;
+}
+
+/* Code block header */
+.code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin: 0;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.light .code-header {
+  background: #f1f3f4;
+  color: #666;
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+.dark .code-header {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ccc;
+  border-bottom-color: rgba(255, 255, 255, 0.15);
+}
+
+.code-language {
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.8;
+}
+
+.code-copy-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.code-copy-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.light .code-copy-btn {
+  color: #666;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.light .code-copy-btn:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.05);
+  color: #333;
+}
+
+.dark .code-copy-btn {
+  color: #ccc;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .code-copy-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
 }
 
 .prose blockquote {
@@ -605,6 +1005,15 @@ if (error.value) {
 html,
 body {
   overflow-x: hidden;
+}
+
+/* Theme toggle icons */
+.theme-icon-sun {
+  filter: brightness(1.3);
+}
+
+.theme-icon-moon {
+  filter: brightness(0.7);
 }
 
 /* Custom scrollbar */

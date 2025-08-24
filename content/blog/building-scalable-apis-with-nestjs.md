@@ -86,10 +86,11 @@ export class UsersService {
 
 NestJS works seamlessly with TypeORM for database operations:
 
-```typescript
-
+```bash
 npm install @nestjs/typeorm typeorm mysql2
+```
 
+```ts
 
 @Module({
   imports: [

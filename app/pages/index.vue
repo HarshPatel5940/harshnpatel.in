@@ -318,6 +318,7 @@ function runAnimations() {
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            class="theme-icon-sun"
           >
             <path
               d="M12 2V6M12 18V22M4.93 4.93L7.76 7.76M16.24 16.24L19.07 19.07M2 12H6M18 12H22M4.93 19.07L7.76 16.24M16.24 7.76L19.07 4.93"
@@ -341,6 +342,7 @@ function runAnimations() {
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            class="theme-icon-moon"
           >
             <path
               d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"
@@ -797,6 +799,15 @@ function runAnimations() {
 
 .light .theme-toggle:hover {
   background: rgba(0, 0, 0, 0.2);
+}
+
+/* Theme toggle icons */
+.theme-icon-sun {
+  filter: brightness(1.3);
+}
+
+.theme-icon-moon {
+  filter: brightness(0.7);
 }
 
 /* Top navigation container */

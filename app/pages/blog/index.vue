@@ -29,13 +29,53 @@
           </div>
           <div class="flex items-center gap-3">
             <button
+              @click="toggleTheme"
               class="theme-toggle"
               :class="isDark ? '' : 'light'"
               aria-label="Toggle theme"
-              @click="toggleTheme"
             >
-              <span v-if="isDark">🌙</span>
-              <span v-else>☀️</span>
+              <svg
+                v-if="isDark"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                class="theme-icon-sun"
+              >
+                <path
+                  d="M12 2V6M12 18V22M4.93 4.93L7.76 7.76M16.24 16.24L19.07 19.07M2 12H6M18 12H22M4.93 19.07L7.76 16.24M16.24 7.76L19.07 4.93"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="5"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  fill="none"
+                />
+              </svg>
+              <svg
+                v-else
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                class="theme-icon-moon"
+              >
+                <path
+                  d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  fill="currentColor"
+                />
+              </svg>
             </button>
             <NuxtLink
               to="/"
@@ -519,6 +559,32 @@ useHead({
 html,
 body {
   overflow-x: hidden;
+}
+
+/* Theme toggle icons */
+.theme-icon-sun {
+  filter: brightness(1.3);
+}
+
+.theme-icon-moon {
+  filter: brightness(0.7);
+}
+
+/* Code styling for any inline code in descriptions */
+.prose code {
+  @apply px-1.5 py-0.5 rounded text-sm font-mono;
+  font-weight: 500;
+}
+
+.light .prose code {
+  background: rgba(0, 0, 0, 0.05);
+  color: inherit !important;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.dark .prose code {
+  background: rgba(255, 255, 255, 0.1);
+  color: inherit !important;
 }
 
 /* Custom scrollbar */
