@@ -1,7 +1,10 @@
 <template>
     <div class="w-full h-full">
+        <div class="background fixed inset-0 -z-10" />
         <NuxtLayout>
-            <NuxtPage />
+            <div class="page-content">
+                <NuxtPage />
+            </div>
         </NuxtLayout>
     </div>
 </template>

@@ -3,7 +3,7 @@ export const useTheme = () => {
   const actualTheme = ref<"light" | "dark">("light");
 
   const initializeTheme = () => {
-    if (process.client) {
+    if (import.meta.client) {
       const savedTheme = localStorage.getItem("theme") as
         | "light"
         | "dark"
@@ -16,7 +16,7 @@ export const useTheme = () => {
   };
 
   const updateActualTheme = () => {
-    if (process.client) {
+    if (import.meta.client) {
       if (theme.value === "system") {
         actualTheme.value = window.matchMedia("(prefers-color-scheme: dark)")
           .matches
@@ -33,7 +33,7 @@ export const useTheme = () => {
 
   const setTheme = (newTheme: "light" | "dark" | "system") => {
     theme.value = newTheme;
-    if (process.client) {
+    if (import.meta.client) {
       localStorage.setItem("theme", newTheme);
       updateActualTheme();
     }
@@ -46,7 +46,7 @@ export const useTheme = () => {
     setTheme(themes[nextIndex]);
   };
 
-  if (process.client) {
+  if (import.meta.client) {
     window
       .matchMedia("(prefers-color-scheme: dark)")
       .addEventListener("change", () => {
