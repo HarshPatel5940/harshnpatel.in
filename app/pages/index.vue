@@ -1,149 +1,3 @@
-<template>
-    <div class="portfolio-page">
-        <div class="content-wrapper">
-            <!-- Animated name -->
-            <h1 class="main-title ml12">
-                <span class="text-wrapper">
-                    <span class="letters">
-                        <span class="part1">Harsh</span
-                        ><span class="part2">&nbsp;Nikul</span
-                        ><span class="part3">&nbsp;Patel</span>
-                    </span>
-                    <span class="line"></span>
-                </span>
-            </h1>
-
-            <!-- Mobile static name (no animation) -->
-            <h1 class="mobile-title">Harsh Nikul Patel</h1>
-
-            <!-- Theme toggle button -->
-            <button
-                @click="toggleTheme"
-                class="theme-toggle"
-                :title="
-                    isDark ? 'Switch to light theme' : 'Switch to dark theme'
-                "
-            >
-                <svg
-                    v-if="isDark"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path
-                        d="M12 2V6M12 18V22M4.93 4.93L7.76 7.76M16.24 16.24L19.07 19.07M2 12H6M18 12H22M4.93 19.07L7.76 16.24M16.24 7.76L19.07 4.93"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                    />
-                    <circle
-                        cx="12"
-                        cy="12"
-                        r="5"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        fill="none"
-                    />
-                </svg>
-                <svg
-                    v-else
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path
-                        d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        fill="currentColor"
-                    />
-                </svg>
-            </button>
-
-            <!-- Description text -->
-            <div id="description" class="description-container">
-                <p class="description-text">
-                    I am a senior year undergrad dedicated to the pursuit of a
-                    Computer Science and Engineering degree, backed by a
-                    formidable
-                    <strong>four-year</strong> freelance tenure as a Backend and
-                    Bot Developer. Currently, I write code and have fun in
-                    <strong>Golang & TypeScript</strong>. My relentless
-                    enthusiasm for cutting-edge technologies and my commitment
-                    to <strong>open source initiatives</strong> propel my
-                    journey in this field.
-                </p>
-
-                <p class="description-text">
-                    As a Freelance Developer, I have had the privilege of
-                    collaborating with over <strong>30 clients</strong>, both
-                    national and <strong>international</strong>, on projects
-                    spanning bot development, automation, and web development.
-                </p>
-
-                <p class="description-text">
-                    For further inquiries or collaboration opportunities, please
-                    do not hesitate to reach out to me at
-                    <a
-                        href="mailto:hi@harshnpatel.in"
-                        target="_blank"
-                        class="email-link"
-                    >
-                        hi@harshnpatel.in</a
-                    >
-                    or feel free to
-                    <a
-                        href="https://cal.com/harshnpatel"
-                        target="_blank"
-                        class="email-link"
-                    >
-                        book a call here</a
-                    >.
-                </p>
-            </div>
-
-            <!-- Social buttons -->
-            <div id="social-buttons" class="social-container">
-                <a
-                    class="social-btn primary"
-                    href="/Harsh-Nikul-Patel_Resume.pdf"
-                    download="Harsh_Nikul_Patel.pdf"
-                    target="_blank"
-                >
-                    Download CV!
-                </a>
-                <a
-                    href="https://linkedin.com/in/HarshPatel5940"
-                    target="_blank"
-                    class="social-btn outline"
-                >
-                    My Linkedin
-                </a>
-                <a
-                    href="https://github.com/HarshPatel5940"
-                    target="_blank"
-                    class="social-btn outline"
-                >
-                    My Github
-                </a>
-                <a
-                    href="https://fiverr.com/harshpatel5940"
-                    target="_blank"
-                    class="social-btn outline"
-                >
-                    My Fiverr
-                </a>
-            </div>
-        </div>
-    </div>
-</template>
-
 <script setup>
 import { onMounted, onUnmounted, ref } from "vue";
 
@@ -466,6 +320,152 @@ function runAnimations() {
 }
 </script>
 
+<template>
+    <div class="portfolio-page">
+        <div class="content-wrapper">
+            <!-- Animated name -->
+            <h1 class="main-title ml12">
+                <span class="text-wrapper">
+                    <span class="letters">
+                        <span class="part1">Harsh</span
+                        ><span class="part2">&nbsp;Nikul</span
+                        ><span class="part3">&nbsp;Patel</span>
+                    </span>
+                    <span class="line" />
+                </span>
+            </h1>
+
+            <!-- Mobile static name (no animation) -->
+            <h1 class="mobile-title">Harsh Nikul Patel</h1>
+
+            <!-- Theme toggle button -->
+            <button
+                class="theme-toggle"
+                :title="
+                    isDark ? 'Switch to light theme' : 'Switch to dark theme'
+                "
+                @click="toggleTheme"
+            >
+                <svg
+                    v-if="isDark"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M12 2V6M12 18V22M4.93 4.93L7.76 7.76M16.24 16.24L19.07 19.07M2 12H6M18 12H22M4.93 19.07L7.76 16.24M16.24 7.76L19.07 4.93"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                    />
+                    <circle
+                        cx="12"
+                        cy="12"
+                        r="5"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        fill="none"
+                    />
+                </svg>
+                <svg
+                    v-else
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        fill="currentColor"
+                    />
+                </svg>
+            </button>
+
+            <!-- Description text -->
+            <div id="description" class="description-container">
+                <p class="description-text">
+                    I am a senior year undergrad dedicated to the pursuit of a
+                    Computer Science and Engineering degree, backed by a
+                    formidable
+                    <strong>four-year</strong> freelance tenure as a Backend and
+                    Bot Developer. Currently, I write code and have fun in
+                    <strong>Golang & TypeScript</strong>. My relentless
+                    enthusiasm for cutting-edge technologies and my commitment
+                    to <strong>open source initiatives</strong> propel my
+                    journey in this field.
+                </p>
+
+                <p class="description-text">
+                    As a Freelance Developer, I have had the privilege of
+                    collaborating with over <strong>30 clients</strong>, both
+                    national and <strong>international</strong>, on projects
+                    spanning bot development, automation, and web development.
+                </p>
+
+                <p class="description-text">
+                    For further inquiries or collaboration opportunities, please
+                    do not hesitate to reach out to me at
+                    <a
+                        href="mailto:hi@harshnpatel.in"
+                        target="_blank"
+                        class="email-link"
+                    >
+                        hi@harshnpatel.in</a
+                    >
+                    or feel free to
+                    <a
+                        href="https://cal.com/harshnpatel"
+                        target="_blank"
+                        class="email-link"
+                    >
+                        book a call here</a
+                    >.
+                </p>
+            </div>
+
+            <!-- Social buttons -->
+            <div id="social-buttons" class="social-container">
+                <a
+                    class="social-btn primary"
+                    href="/Harsh-Nikul-Patel_Resume.pdf"
+                    download="Harsh_Nikul_Patel.pdf"
+                    target="_blank"
+                >
+                    Download CV!
+                </a>
+                <a
+                    href="https://linkedin.com/in/HarshPatel5940"
+                    target="_blank"
+                    class="social-btn outline"
+                >
+                    My Linkedin
+                </a>
+                <a
+                    href="https://github.com/HarshPatel5940"
+                    target="_blank"
+                    class="social-btn outline"
+                >
+                    My Github
+                </a>
+                <a
+                    href="https://fiverr.com/harshpatel5940"
+                    target="_blank"
+                    class="social-btn outline"
+                >
+                    My Fiverr
+                </a>
+            </div>
+        </div>
+    </div>
+</template>
+
 <style>
 .portfolio-body {
     font-family: "Geist-Regular", sans-serif !important;
@@ -499,13 +499,13 @@ function runAnimations() {
 
 .portfolio-page {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     min-height: 100vh;
     max-width: 100vw;
     width: 100%;
     font-family: "Geist-Regular", sans-serif;
-    padding: 1rem 0;
+    padding: 8vh 1rem 1rem;
     position: relative;
     overflow-x: hidden;
 }
@@ -643,38 +643,39 @@ function runAnimations() {
 }
 
 .description-container {
-    margin-top: 2rem;
+    margin-top: 1rem;
     opacity: 0;
-    max-width: 600px;
+    max-width: 75%;
     margin-left: auto;
     margin-right: auto;
 }
 
 .description-text {
     opacity: 0;
-    font-size: 1rem;
+    font-size: 1.2rem;
     line-height: 1.6;
     color: #e5e7eb;
     margin-bottom: 1rem;
-    text-align: left;
+    text-align: justify;
 }
 
 @media (max-width: 768px) {
     .description-text {
-        font-size: 0.9rem;
-        text-align: center;
+        font-size: 1.2rem;
+        text-align: justify;
         margin-bottom: 0.8rem;
         line-height: 1.5;
     }
 
     .description-container {
         max-width: 95%;
-        margin-top: 1.5rem;
+        margin-top: 1rem;
     }
 }
 
 @media (max-width: 480px) {
     .description-text {
+        text-align: justify;
         font-size: 1rem;
         margin-bottom: 0.6rem;
     }
