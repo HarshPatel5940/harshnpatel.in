@@ -1,0 +1,628 @@
+<template>
+  <div
+    :class="[
+      'min-h-screen transition-colors duration-300',
+      isDark ? 'portfolio-body dark' : 'portfolio-body light',
+    ]"
+  >
+    <!-- Header -->
+    <header
+      class="sticky top-0 z-10 backdrop-blur-sm border-b transition-colors duration-300"
+      :class="[
+        isDark
+          ? 'border-gray-700 bg-gray-900/80'
+          : 'border-gray-200 bg-white/80',
+      ]"
+    >
+      <div class="max-w-4xl mx-auto px-4 py-4">
+        <div class="flex items-center justify-between">
+          <NuxtLink
+            to="/blog"
+            class="font-medium flex items-center transition-colors duration-300"
+            :class="[
+              isDark
+                ? 'text-green-400 hover:text-green-300'
+                : 'text-green-600 hover:text-green-700',
+            ]"
+          >
+            <svg class="mr-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                fill-rule="evenodd"
+                d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            Back to Blog
+          </NuxtLink>
+          <div class="flex items-center gap-4">
+            <button
+              class="theme-toggle"
+              :class="isDark ? '' : 'light'"
+              aria-label="Toggle theme"
+              @click="toggleTheme"
+            >
+              <span v-if="isDark">🌙</span>
+              <span v-else>☀️</span>
+            </button>
+            <NuxtLink
+              to="/"
+              class="font-medium transition-colors duration-300"
+              :class="
+                isDark
+                  ? 'text-gray-400 hover:text-gray-300'
+                  : 'text-gray-600 hover:text-gray-700'
+              "
+            >
+              Home
+            </NuxtLink>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Loading State -->
+    <div v-if="pending" class="max-w-4xl mx-auto px-4 py-12 text-center">
+      <div
+        class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-green-600"
+      />
+      <p class="mt-4 text-gray-600 dark:text-gray-400">Loading post...</p>
+    </div>
+
+    <!-- Error State -->
+    <div v-else-if="error" class="max-w-4xl mx-auto px-4 py-12 text-center">
+      <div class="text-6xl mb-4">😔</div>
+      <h1 class="text-2xl font-bold mb-2">Post Not Found</h1>
+      <p class="text-gray-600 dark:text-gray-400 mb-6">
+        The blog post you're looking for doesn't exist or has been moved.
+      </p>
+      <NuxtLink
+        to="/blog"
+        class="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+      >
+        Browse All Posts
+      </NuxtLink>
+    </div>
+
+    <!-- Blog Post -->
+    <article v-else-if="post" class="max-w-4xl mx-auto px-4 py-8 blog-post">
+      <!-- Post Header -->
+      <header class="mb-8">
+        <!-- Featured Badge -->
+        <div v-if="post.featured" class="mb-4">
+          <span
+            class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300"
+            :class="[
+              isDark
+                ? 'bg-green-900 text-green-200'
+                : 'bg-green-100 text-green-800',
+            ]"
+          >
+            ⭐ Featured Post
+          </span>
+        </div>
+
+        <!-- Title -->
+        <h1 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+          {{ post.title }}
+        </h1>
+
+        <!-- Description -->
+        <p
+          class="text-xl mb-6 leading-relaxed transition-colors duration-300"
+          :class="isDark ? 'text-gray-400' : 'text-gray-600'"
+        >
+          {{ post.description }}
+        </p>
+
+        <!-- Meta Information -->
+        <div
+          class="flex flex-wrap items-center gap-6 mb-6 transition-colors duration-300"
+          :class="isDark ? 'text-gray-400' : 'text-gray-500'"
+        >
+          <div class="flex items-center">
+            <svg class="mr-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                fill-rule="evenodd"
+                d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <time :datetime="post.date">
+              {{ formatDate(post.date) }}
+            </time>
+          </div>
+
+          <div class="flex items-center">
+            <svg class="mr-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            {{ post.reading_time }}
+          </div>
+
+          <div class="flex items-center">
+            <svg class="mr-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                fill-rule="evenodd"
+                d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <span class="capitalize">{{ post.category }}</span>
+          </div>
+        </div>
+
+        <!-- Tags -->
+        <div v-if="post.tags?.length" class="mb-8">
+          <div class="flex flex-wrap gap-2">
+            <span
+              v-for="tag in post.tags"
+              :key="tag"
+              class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300"
+              :class="[
+                isDark
+                  ? 'bg-gray-700 text-gray-200 hover:bg-gray-600'
+                  : 'bg-gray-100 text-gray-800 hover:bg-gray-200',
+              ]"
+            >
+              #{{ tag }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <hr
+          class="transition-colors duration-300"
+          :class="isDark ? 'border-gray-700' : 'border-gray-200'"
+        />
+      </header>
+
+      <!-- Post Content -->
+      <div class="prose prose-lg dark:prose-invert max-w-none prose-green">
+        <ContentRenderer :value="post" />
+      </div>
+
+      <!-- Post Footer -->
+      <footer
+        class="mt-12 pt-8 border-t transition-colors duration-300"
+        :class="isDark ? 'border-gray-700' : 'border-gray-200'"
+      >
+        <!-- Share Section -->
+        <div class="mb-8">
+          <h3 class="text-lg font-semibold mb-4">Share this post</h3>
+          <div class="flex gap-4">
+            <a
+              :href="`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(currentUrl)}`"
+              target="_blank"
+              rel="noopener"
+              class="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-300"
+            >
+              <svg class="mr-2 w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"
+                />
+              </svg>
+              Twitter
+            </a>
+
+            <a
+              :href="`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`"
+              target="_blank"
+              rel="noopener"
+              class="flex items-center px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-colors duration-300"
+            >
+              <svg class="mr-2 w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                />
+              </svg>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="flex justify-between items-center">
+          <NuxtLink
+            to="/blog"
+            class="inline-flex items-center px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-300 font-medium"
+          >
+            <svg class="mr-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                fill-rule="evenodd"
+                d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            All Posts
+          </NuxtLink>
+
+          <a
+            href="mailto:hi@harshnpatel.in?subject=Blog Post Feedback"
+            class="font-medium transition-colors duration-300"
+            :class="[
+              isDark
+                ? 'text-green-400 hover:text-green-300'
+                : 'text-green-600 hover:text-green-700',
+            ]"
+          >
+            Send Feedback
+          </a>
+        </div>
+      </footer>
+    </article>
+
+    <!-- Footer -->
+    <footer
+      class="border-t mt-16 transition-colors duration-300"
+      :class="isDark ? 'border-gray-700' : 'border-gray-200'"
+    >
+      <div class="max-w-4xl mx-auto px-4 py-8 text-center">
+        <p
+          class="transition-colors duration-300"
+          :class="isDark ? 'text-gray-400' : 'text-gray-600'"
+        >
+          © {{ new Date().getFullYear() }} Harsh Patel. All rights reserved.
+        </p>
+      </div>
+    </footer>
+  </div>
+</template>
+
+<script setup>
+const isDark = ref(false);
+
+onMounted(() => {
+  initializeTheme();
+});
+
+function initializeTheme() {
+  const savedTheme = localStorage.getItem("theme");
+  isDark.value =
+    savedTheme === "dark" ||
+    (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches);
+  applyTheme();
+}
+
+function applyTheme() {
+  document.body.className = isDark.value
+    ? "portfolio-body dark"
+    : "portfolio-body light";
+  localStorage.setItem("theme", isDark.value ? "dark" : "light");
+}
+
+function toggleTheme() {
+  isDark.value = !isDark.value;
+  applyTheme();
+}
+
+const route = useRoute();
+const slug = route.params.slug;
+
+const {
+  data: post,
+  pending,
+  error,
+} = await useAsyncData(`blog-${slug}`, async () => {
+  try {
+    const allPosts = await queryCollection("blog").all();
+    console.log("All posts:", allPosts);
+    console.log("Looking for slug:", slug);
+
+    const matchingPost = allPosts.find((post) => {
+      console.log("Checking post:", post._id);
+
+      if (post._id && post._id.includes(slug)) {
+        return true;
+      }
+
+      if (post.title) {
+        const titleSlug = post.title
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-+|-+$/g, "");
+        if (titleSlug === slug) {
+          return true;
+        }
+      }
+
+      return false;
+    });
+
+    console.log("Found post:", matchingPost);
+    return matchingPost || null;
+  } catch (err) {
+    console.error("Error fetching blog post:", err);
+    return null;
+  }
+});
+
+const currentUrl = computed(() => {
+  if (import.meta.client) {
+    return window.location.href;
+  }
+  return `https://harshnpatel.in/blog/${slug}`;
+});
+
+const formatDate = (dateString) => {
+  return new Date(dateString).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+};
+
+useHead(() => ({
+  title: post.value
+    ? `${post.value.title} - Harsh Patel`
+    : "Blog Post - Harsh Patel",
+  meta: [
+    {
+      name: "description",
+      content: post.value?.description || "Read this blog post by Harsh Patel",
+    },
+    {
+      property: "og:title",
+      content: post.value
+        ? `${post.value.title} - Harsh Patel`
+        : "Blog Post - Harsh Patel",
+    },
+    {
+      property: "og:description",
+      content: post.value?.description || "Read this blog post by Harsh Patel",
+    },
+    {
+      property: "og:type",
+      content: "article",
+    },
+    {
+      property: "article:published_time",
+      content: post.value?.date,
+    },
+    {
+      property: "article:author",
+      content: "Harsh Patel",
+    },
+    {
+      property: "article:section",
+      content: post.value?.category,
+    },
+    {
+      name: "twitter:card",
+      content: "summary_large_image",
+    },
+    {
+      name: "twitter:creator",
+      content: "@harshpatel5940",
+    },
+  ],
+  link: [
+    {
+      rel: "canonical",
+      href: currentUrl.value,
+    },
+  ],
+}));
+
+if (error.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: "Blog post not found",
+  });
+}
+</script>
+
+<style>
+/* Portfolio body styles */
+.portfolio-body {
+  font-family:
+    "Geist",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.portfolio-body.dark {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(255, 255, 255, 0.15) 1px,
+    transparent 0
+  );
+  background-size: 20px 20px;
+  color: #ffffff;
+}
+
+.portfolio-body.light {
+  background: linear-gradient(135deg, #8ff99f 0%, #b8ffd1 100%);
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(0, 0, 0, 0.1) 1px,
+    transparent 0
+  );
+  background-size: 20px 20px;
+  color: #1a1a1a;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  backdrop-filter: blur(10px);
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.light .theme-toggle {
+  border-color: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.1);
+  color: #1a1a1a;
+}
+
+.light .theme-toggle:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* Blog post content styling */
+.blog-post {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.light .blog-post {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Custom prose styling */
+.prose {
+  color: inherit;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  color: inherit;
+  font-weight: 700;
+}
+
+.prose h2 {
+  @apply text-2xl mt-8 mb-4;
+}
+
+.prose h3 {
+  @apply text-xl mt-6 mb-3;
+}
+
+.prose h4 {
+  @apply text-lg mt-4 mb-2;
+}
+
+.prose p {
+  @apply mb-4 leading-relaxed;
+}
+
+.prose ul,
+.prose ol {
+  @apply mb-4;
+}
+
+.prose li {
+  @apply mb-1;
+}
+
+.prose code {
+  @apply px-1.5 py-0.5 rounded text-sm font-mono;
+  background: rgba(0, 0, 0, 0.1);
+  color: inherit;
+}
+
+.dark .prose code {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.prose pre {
+  @apply p-4 rounded-lg overflow-x-auto mb-4;
+  background: rgba(0, 0, 0, 0.8);
+  color: #e5e5e5;
+}
+
+.prose pre code {
+  @apply bg-transparent p-0;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-green-500 pl-4 italic mb-4;
+  color: rgba(128, 128, 128, 0.8);
+}
+
+.prose a {
+  @apply no-underline hover:underline;
+  color: #22c55e;
+  transition: color 0.3s ease;
+}
+
+.prose a:hover {
+  color: #16a34a;
+}
+
+.prose img {
+  @apply rounded-lg mb-4;
+}
+
+.prose table {
+  @apply w-full border-collapse mb-4;
+  border: 1px solid rgba(128, 128, 128, 0.3);
+}
+
+.prose th,
+.prose td {
+  @apply px-4 py-2;
+  border: 1px solid rgba(128, 128, 128, 0.3);
+}
+
+.prose th {
+  @apply font-semibold;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.dark .prose th {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Fix scroll issues */
+html,
+body {
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #22c55e;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #16a34a;
+}
+</style>

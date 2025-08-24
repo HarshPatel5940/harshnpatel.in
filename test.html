@@ -1,240 +1,217 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Harsh Nikul Patel | Portfolio</title>
-        <!-- Tailwind CSS for styling -->
-        <script src="https://cdn.tailwindcss.com"></script>
-        <!-- Google Fonts: Inter -->
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap"
-            rel="stylesheet"
-        />
-        <style>
-            /* Custom styles for the page */
-            body {
-                font-family: "Inter", sans-serif;
-                /* A subtle gradient background */
-                background-color: #111827; /* bg-gray-900 */
-                background-image: radial-gradient(
-                    circle at 1px 1px,
-                    #374151 1px,
-                    transparent 0
-                );
-                background-size: 2rem 2rem;
-            }
-            /* Style for the text that will be animated */
-            .letter {
-                display: inline-block;
-                opacity: 0;
-                transform: translateY(40px) scale(0.8);
-            }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Harsh Nikul Patel | Portfolio</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Custom styles for the page */
+      body {
+        font-family: "Inter", sans-serif;
+        /* A subtle gradient background */
+        background-color: #111827; /* bg-gray-900 */
+        background-image: radial-gradient(
+          circle at 1px 1px,
+          #374151 1px,
+          transparent 0
+        );
+        background-size: 2rem 2rem;
+      }
+      /* Style for the text that will be animated */
+      .letter {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(40px) scale(0.8);
+      }
 
-            .text-wrapper {
-                position: relative;
-                display: inline-block;
-                /* REMOVED overflow: hidden to prevent clipping */
-            }
+      .text-wrapper {
+        position: relative;
+        display: inline-block;
+        /* REMOVED overflow: hidden to prevent clipping */
+      }
 
-            /* Using Flexbox for robust alignment and responsiveness */
-            .letters {
-                display: inline-flex;
-                align-items: center;
-                flex-wrap: nowrap;
-                white-space: nowrap;
-            }
+      /* Using Flexbox for robust alignment and responsiveness */
+      .letters {
+        display: inline-flex;
+        align-items: center;
+        flex-wrap: nowrap;
+        white-space: nowrap;
+      }
 
-            /* Each part needs proper overflow handling */
-            .part1,
-            .part2,
-            .part3 {
-                overflow: visible; /* Allow content to be visible during animation */
-            }
+      /* Each part needs proper overflow handling */
+      .part1,
+      .part2,
+      .part3 {
+        overflow: visible; /* Allow content to be visible during animation */
+      }
 
-            .ml12 .line {
-                height: 100%;
-                left: 0;
-                position: absolute;
-                top: 0;
-                width: 3px;
-                background-color: #fff;
-                transform-origin: 0 50%;
-            }
+      .ml12 .line {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 3px;
+        background-color: #fff;
+        transform-origin: 0 50%;
+      }
 
-            /* Responsive wrapping for smaller screens */
-            @media (max-width: 640px) {
-                h1 {
-                    font-size: 3rem; /* Adjust font size */
-                }
-                .letters {
-                    flex-wrap: wrap; /* Allow wrapping */
-                    justify-content: center; /* Center the wrapped content */
-                }
-            }
-        </style>
-    </head>
-    <body class="text-white flex items-center justify-center min-h-screen">
-        <div class="text-center p-8">
-            <!-- HTML structure is now cleaner with spaces inside the spans -->
-            <h1
-                class="text-5xl md:text-8xl font-black tracking-tighter mb-4 ml12"
-            >
-                <span class="text-wrapper">
-                    <span class="letters">
-                        <span class="part1">Harsh</span
-                        ><span class="part2">&nbsp;Nikul</span
-                        ><span class="part3">&nbsp;Patel</span>
-                    </span>
-                    <span class="line"></span>
-                </span>
-            </h1>
+      /* Responsive wrapping for smaller screens */
+      @media (max-width: 640px) {
+        h1 {
+          font-size: 3rem; /* Adjust font size */
+        }
+        .letters {
+          flex-wrap: wrap; /* Allow wrapping */
+          justify-content: center; /* Center the wrapped content */
+        }
+      }
+    </style>
+  </head>
+  <body class="text-white flex items-center justify-center min-h-screen">
+    <div class="text-center p-8">
+      <!-- HTML structure is now cleaner with spaces inside the spans -->
+      <h1 class="text-5xl md:text-8xl font-black tracking-tighter mb-4 ml12">
+        <span class="text-wrapper">
+          <span class="letters">
+            <span class="part1">Harsh</span
+            ><span class="part2">&nbsp;Nikul</span
+            ><span class="part3">&nbsp;Patel</span>
+          </span>
+          <span class="line"></span>
+        </span>
+      </h1>
 
-            <!-- Call-to-action button -->
-            <div id="cta-button" class="mt-12 opacity-0">
-                <a
-                    href="https://harshnpatel.in"
-                    target="_blank"
-                    class="inline-block bg-blue-600 text-white font-bold text-lg px-8 py-4 rounded-lg shadow-lg hover:bg-blue-700 transform hover:scale-105 transition-all duration-300"
-                >
-                    View My Work
-                </a>
-            </div>
-        </div>
+      <!-- Call-to-action button -->
+      <div id="cta-button" class="mt-12 opacity-0">
+        <a
+          href="https://harshnpatel.in"
+          target="_blank"
+          class="inline-block bg-blue-600 text-white font-bold text-lg px-8 py-4 rounded-lg shadow-lg hover:bg-blue-700 transform hover:scale-105 transition-all duration-300"
+        >
+          View My Work
+        </a>
+      </div>
+    </div>
 
-        <!-- Anime.js library -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-        <script>
-            // Wait for the DOM to be fully loaded before running the script
-            document.addEventListener("DOMContentLoaded", () => {
-                // Select parts of the name
-                const part1 = document.querySelector(".part1");
-                const part2 = document.querySelector(".part2");
-                const part3 = document.querySelector(".part3");
-                const line = document.querySelector(".ml12 .line");
-                const letters = document.querySelector(".letters");
+    <!-- Anime.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const part1 = document.querySelector(".part1");
+        const part2 = document.querySelector(".part2");
+        const part3 = document.querySelector(".part3");
+        const line = document.querySelector(".ml12 .line");
+        const letters = document.querySelector(".letters");
 
-                // Utility function to wrap letters in spans
-                function wrapLetters(element) {
-                    element.innerHTML = element.textContent.replace(
-                        /\S/g,
-                        "<span class='letter'>$&</span>",
-                    );
-                }
+        function wrapLetters(element) {
+          element.innerHTML = element.textContent.replace(
+            /\S/g,
+            "<span class='letter'>$&</span>",
+          );
+        }
 
-                // Wrap letters for each part of the name
-                wrapLetters(part1);
-                wrapLetters(part2);
-                wrapLetters(part3);
+        wrapLetters(part1);
+        wrapLetters(part2);
+        wrapLetters(part3);
 
-                // --- INITIAL STATE SETUP ---
-                // Measure the full width of part2 (" Nikul") to know how much space to make
-                const part2Width = part2.getBoundingClientRect().width;
+        const part2Width = part2.getBoundingClientRect().width;
 
-                // Hide part2 completely at the start. It will take up no space.
-                anime.set(part2, {
-                    opacity: 0,
-                    width: 0, // Start with zero width
-                    display: "inline-block",
-                    overflow: "visible", // Ensure content isn't clipped during animation
-                });
+        anime.set(part2, {
+          opacity: 0,
+          width: 0,
+          display: "inline-block",
+          overflow: "visible",
+        });
 
-                // Create an animation timeline with Anime.js
-                const tl = anime.timeline({
-                    easing: "easeOutExpo",
-                    duration: 1000,
-                });
+        const tl = anime.timeline({
+          easing: "easeOutExpo",
+          duration: 1000,
+        });
 
-                // --- ANIMATION SEQUENCE ---
-                tl.add({
-                    // Animate the letters of "Harsh" and " Patel"
-                    targets: ".part1 .letter, .part3 .letter",
-                    translateX: [40, 0],
-                    translateY: [40, 0], // Added translateY to prevent clipping
-                    translateZ: 0,
-                    opacity: [0, 1],
-                    scale: [0.8, 1], // Added scale animation
-                    easing: "easeOutExpo",
-                    duration: 1200,
-                    delay: anime.stagger(30, { start: 500 }),
-                })
-                    .add({
-                        // Animate the vertical line appearing
-                        targets: line,
-                        scaleX: [0, 1],
-                        opacity: [0.5, 1],
-                        easing: "easeOutExpo",
-                        duration: 700,
-                        offset: "-=875",
-                    })
-                    .add({
-                        // Move line to the end of "Harsh Patel"
-                        targets: line,
-                        translateX: [0, letters.scrollWidth],
-                        easing: "easeOutExpo",
-                        duration: 700,
-                        delay: 100,
-                    })
-                    .add({
-                        // Move line back after "Harsh"
-                        targets: line,
-                        translateX: [letters.scrollWidth, part1.offsetWidth],
-                        easing: "easeInOutExpo",
-                        duration: 600,
-                        delay: 200,
-                    })
-                    .add({
-                        // Animate part2's width to make space for it
-                        targets: part2,
-                        width: [0, part2Width], // Animate from 0 to its natural width
-                        opacity: [0, 1],
-                        easing: "easeInOutExpo",
-                        duration: 800,
-                        offset: "-=600", // Run in parallel with the line moving back
-                    })
-                    .add({
-                        // Reveal the letters of "Nikul" with proper transforms
-                        targets: ".part2 .letter",
-                        translateY: [40, 0], // Animate from below to natural position
-                        scale: [0.8, 1], // Animate scale
-                        opacity: [0, 1],
-                        easing: "easeInOutExpo",
-                        duration: 600,
-                        delay: anime.stagger(80),
-                        offset: "-=800",
-                    })
-                    .add({
-                        // Move line to the end of the new full name "Harsh Nikul Patel"
-                        targets: line,
-                        translateX: () => [
-                            part1.offsetWidth,
-                            letters.scrollWidth + 20,
-                        ],
-                        easing: "easeOutExpo",
-                        duration: 700,
-                        delay: 100,
-                    })
-                    .add({
-                        // Make the line disappear completely
-                        targets: line,
-                        opacity: 0,
-                        duration: 500,
-                        easing: "easeOutExpo",
-                    })
-                    .add(
-                        {
-                            // Fade in the call-to-action button
-                            targets: "#cta-button",
-                            opacity: [0, 1],
-                            translateY: [20, 0],
-                            duration: 800,
-                            easing: "easeOutExpo",
-                        },
-                        "-=500",
-                    ); // Overlap with the previous animation
-            });
-        </script>
-    </body>
+        tl.add({
+          targets: ".part1 .letter, .part3 .letter",
+          translateX: [40, 0],
+          translateY: [40, 0],
+          translateZ: 0,
+          opacity: [0, 1],
+          scale: [0.8, 1],
+          easing: "easeOutExpo",
+          duration: 1200,
+          delay: anime.stagger(30, { start: 500 }),
+        })
+          .add({
+            targets: line,
+            scaleX: [0, 1],
+            opacity: [0.5, 1],
+            easing: "easeOutExpo",
+            duration: 700,
+            offset: "-=875",
+          })
+          .add({
+            targets: line,
+            translateX: [0, letters.scrollWidth],
+            easing: "easeOutExpo",
+            duration: 700,
+            delay: 100,
+          })
+          .add({
+            targets: line,
+            translateX: [letters.scrollWidth, part1.offsetWidth],
+            easing: "easeInOutExpo",
+            duration: 600,
+            delay: 200,
+          })
+          .add({
+            targets: part2,
+            width: [0, part2Width],
+            opacity: [0, 1],
+            easing: "easeInOutExpo",
+            duration: 800,
+            offset: "-=600",
+          })
+          .add({
+            targets: ".part2 .letter",
+            translateY: [40, 0],
+            scale: [0.8, 1],
+            opacity: [0, 1],
+            easing: "easeInOutExpo",
+            duration: 600,
+            delay: anime.stagger(80),
+            offset: "-=800",
+          })
+          .add({
+            targets: line,
+            translateX: () => [part1.offsetWidth, letters.scrollWidth + 20],
+            easing: "easeOutExpo",
+            duration: 700,
+            delay: 100,
+          })
+          .add({
+            targets: line,
+            opacity: 0,
+            duration: 500,
+            easing: "easeOutExpo",
+          })
+          .add(
+            {
+              targets: "#cta-button",
+              opacity: [0, 1],
+              translateY: [20, 0],
+              duration: 800,
+              easing: "easeOutExpo",
+            },
+            "-=500",
+          );
+      });
+    </script>
+  </body>
 </html>

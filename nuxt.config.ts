@@ -17,6 +17,7 @@ export default defineNuxtConfig({
   },
 
   modules: [
+    "@nuxt/content",
     "@nuxt/fonts",
     "@nuxt/icon",
     "@nuxt/eslint",
@@ -93,73 +94,37 @@ export default defineNuxtConfig({
         dir: "public",
       },
     ],
+    routeRules: {
+      "/blogs": { redirect: "/blog" },
+      "/blogs/**": { redirect: "/blog/**" },
+    },
   },
-
-  ssr: true,
 
   hooks: {
     "nitro:build:before": async () => {
       const { writeFileSync } = await import("fs");
       const { resolve } = await import("path");
 
-      const blogsData = await import("./content/blogs.json").then(
-        (m) => m.default
-      );
-      const personalData = await import("./content/personal.json").then(
-        (m) => m.default
-      );
-
       const baseUrl = "https://harshnpatel.in";
       const publicDir = resolve(process.cwd(), "app/public");
-
-      const publishedBlogs = blogsData.blogs
-        .filter((blog: any) => blog.published)
-        .sort(
-          (a: any, b: any) =>
-            new Date(b.date).getTime() - new Date(a.date).getTime()
-        );
-
-      const rssItems = publishedBlogs
-        .map((blog: any) => {
-          const pubDate = new Date(blog.date).toUTCString();
-          const link = blog.external_url || `${baseUrl}/blog/${blog.slug}`;
-
-          return `    <item>
-      <title><![CDATA[${blog.title}]]></title>
-      <description><![CDATA[${blog.description}]]></description>
-      <link>${link}</link>
-      <guid isPermaLink="false">${blog.slug}</guid>
-      <pubDate>${pubDate}</pubDate>
-      <category><![CDATA[${blog.category}]]></category>
-      ${blog.tags
-        .map((tag: string) => `<category><![CDATA[${tag}]]></category>`)
-        .join("\n      ")}
-    </item>`;
-        })
-        .join("\n");
 
       const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title><![CDATA[${personalData.personal.name} - Blog]]></title>
-    <description><![CDATA[${personalData.seo.description}]]></description>
+    <title><![CDATA[Harsh Patel - Blog]]></title>
+    <description><![CDATA[Software developer and tech enthusiast specializing in full-stack development, cloud computing, and open-source projects.]]></description>
     <link>${baseUrl}</link>
     <atom:link href="${baseUrl}/rss.xml" rel="self" type="application/rss+xml"/>
     <language>en</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
-    <managingEditor>${personalData.personal.email} (${
-        personalData.personal.name
-      })</managingEditor>
-    <webMaster>${personalData.personal.email} (${
-        personalData.personal.name
-      })</webMaster>
+    <managingEditor>hi@harshnpatel.in (Harsh Patel)</managingEditor>
+    <webMaster>hi@harshnpatel.in (Harsh Patel)</webMaster>
     <generator>Nuxt.js Static Site Generator</generator>
     <image>
       <url>${baseUrl}/og-image.png</url>
-      <title><![CDATA[${personalData.personal.name} - Blog]]></title>
+      <title><![CDATA[Harsh Patel - Blog]]></title>
       <link>${baseUrl}</link>
     </image>
-${rssItems}
   </channel>
 </rss>`;
 
@@ -170,6 +135,12 @@ ${rssItems}
           lastmod: currentDate,
           changefreq: "weekly",
           priority: "1.0",
+        },
+        {
+          loc: `${baseUrl}/blog`,
+          lastmod: currentDate,
+          changefreq: "weekly",
+          priority: "0.9",
         },
         {
           loc: `${baseUrl}/rss.xml`,
@@ -188,7 +159,7 @@ ${urls
     <lastmod>${url.lastmod}</lastmod>
     <changefreq>${url.changefreq}</changefreq>
     <priority>${url.priority}</priority>
-  </url>`
+  </url>`,
   )
   .join("\n")}
 </urlset>`;
