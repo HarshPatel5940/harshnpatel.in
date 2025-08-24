@@ -445,7 +445,7 @@ function addCopyButtonsToCodeBlocks() {
       header.className = "code-header";
 
       // Debug logging to see what classes we have
-      if (process.dev) {
+      if (import.meta) {
         console.log("Code block classes:", codeBlock.className);
         console.log("Pre element classes:", pre.className);
         console.log("Code block HTML:", codeBlock.outerHTML.substring(0, 200));
@@ -458,7 +458,7 @@ function addCopyButtonsToCodeBlocks() {
       const codeLanguageMatch = codeBlock.className.match(/language-(\w+)/);
       if (codeLanguageMatch) {
         language = codeLanguageMatch[1];
-        if (process.dev)
+        if (import.meta)
           console.log("Found language from code class:", language);
       }
 
@@ -467,7 +467,7 @@ function addCopyButtonsToCodeBlocks() {
         const preLanguageMatch = pre.className.match(/language-(\w+)/);
         if (preLanguageMatch) {
           language = preLanguageMatch[1];
-          if (process.dev)
+          if (import.meta)
             console.log("Found language from pre class:", language);
         }
       }
@@ -479,7 +479,7 @@ function addCopyButtonsToCodeBlocks() {
         );
         if (hlMatch) {
           language = hlMatch[1];
-          if (process.dev)
+          if (import.meta)
             console.log("Found language from highlight.js:", language);
         }
       }
@@ -491,7 +491,7 @@ function addCopyButtonsToCodeBlocks() {
           pre.getAttribute("data-language");
         if (dataLang) {
           language = dataLang;
-          if (process.dev)
+          if (import.meta)
             console.log("Found language from data attribute:", language);
         }
       }
@@ -503,7 +503,7 @@ function addCopyButtonsToCodeBlocks() {
           const langMatch = firstLine.match(/```(\w+)/);
           if (langMatch) {
             language = langMatch[1];
-            if (process.dev)
+            if (import.meta)
               console.log("Found language from code content:", language);
           }
         }
@@ -524,7 +524,7 @@ function addCopyButtonsToCodeBlocks() {
       };
 
       language = languageMap[language] || language;
-      if (process.dev) console.log("Final language:", language);
+      if (import.meta) console.log("Final language:", language);
 
       // Create language label
       const languageLabel = document.createElement("span");
