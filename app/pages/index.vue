@@ -28,7 +28,6 @@ useHead({
         { name: "bingbot", content: "index, follow" },
         { name: "theme-color", content: "#0ea5e9" },
 
-        // Open Graph tags
         { property: "og:type", content: "website" },
         {
             property: "og:title",
@@ -53,7 +52,6 @@ useHead({
         },
         { property: "og:locale", content: "en_US" },
 
-        // Twitter Card tags
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:creator", content: "@harshpatel5940" },
         { name: "twitter:site", content: "@harshpatel5940" },
@@ -75,7 +73,6 @@ useHead({
             content: "Harsh Nikul Patel - Full Stack Developer Portfolio",
         },
 
-        // Additional SEO tags
         { name: "geo.region", content: "IN" },
         { name: "geo.position", content: "28.6139;77.2090" },
         { name: "ICBM", content: "28.6139, 77.2090" },
@@ -726,7 +723,7 @@ function runAnimations() {
     }
 }
 
-/* Style for the text that will be animated */
+
 .letter {
     display: inline-block;
     opacity: 0;
@@ -739,7 +736,7 @@ function runAnimations() {
     text-align: center;
 }
 
-/* Using Flexbox for robust alignment and responsiveness */
+
 .letters {
     display: inline-flex;
     align-items: center;
@@ -749,7 +746,7 @@ function runAnimations() {
     overflow: visible;
 }
 
-/* Each part needs proper overflow handling */
+
 .part1,
 .part2,
 .part3 {
@@ -967,7 +964,7 @@ function runAnimations() {
     background: rgba(0, 0, 0, 0.2);
 }
 
-/* Theme toggle icons */
+
 .theme-icon-sun {
     filter: brightness(1.3);
 }
@@ -976,7 +973,7 @@ function runAnimations() {
     filter: brightness(0.7);
 }
 
-/* Top navigation container */
+
 .top-nav {
     position: fixed;
     top: 2rem;
@@ -1040,7 +1037,7 @@ function runAnimations() {
     }
 }
 
-/* Light theme overrides */
+
 .light .description-text {
     color: #374151;
 }
@@ -1068,7 +1065,7 @@ function runAnimations() {
     color: #1a1a1a;
 }
 
-/* Light theme cursor */
+
 .light * {
     cursor: default;
 }

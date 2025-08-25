@@ -127,7 +127,6 @@ export default defineNuxtConfig({
       const publicDir = resolve(process.cwd(), "app/public");
       const contentDir = resolve(process.cwd(), "content/blog");
 
-      // Read blog posts for RSS and sitemap
       let blogPosts = [];
       try {
         const files = await readdir(contentDir);
@@ -137,7 +136,6 @@ export default defineNuxtConfig({
           const filePath = join(contentDir, file);
           const content = await readFile(filePath, "utf-8");
 
-          // Extract frontmatter
           const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---/);
           if (frontmatterMatch) {
             const frontmatter = frontmatterMatch[1];
@@ -168,7 +166,6 @@ export default defineNuxtConfig({
           }
         }
 
-        // Sort by date (newest first)
         blogPosts.sort(
           (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
         );
@@ -179,7 +176,6 @@ export default defineNuxtConfig({
         );
       }
 
-      // Generate RSS with blog posts
       const rssItems = blogPosts
         .map(
           (post) => `
@@ -222,7 +218,6 @@ export default defineNuxtConfig({
 
       const currentDate = new Date().toISOString().split("T")[0];
 
-      // Base URLs for sitemap
       const baseUrls = [
         {
           loc: baseUrl,
@@ -244,7 +239,6 @@ export default defineNuxtConfig({
         },
       ];
 
-      // Add blog post URLs to sitemap
       const blogUrls = blogPosts.map((post) => ({
         loc: post.url,
         lastmod: new Date(post.date).toISOString().split("T")[0],

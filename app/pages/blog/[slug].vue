@@ -365,11 +365,9 @@
 <script setup>
 const isDark = ref(false);
 
-// Get the slug from the route
 const route = useRoute();
 const slug = route.params.slug;
 
-// Fetch the blog post
 const {
     data: post,
     pending,
@@ -408,17 +406,14 @@ const {
     }
 });
 
-// Initialize theme on mount
 onMounted(() => {
     initializeTheme();
 
-    // Set up mutation observer to watch for content changes
     if (import.meta.client) {
         setupContentObserver();
     }
 });
 
-// Watch for post changes to add copy buttons
 watch(
     () => post.value,
     () => {
@@ -431,14 +426,12 @@ watch(
     { deep: true },
 );
 
-// Handle when content is rendered
 function onContentRendered() {
     setTimeout(() => {
         addCopyButtonsToCodeBlocks();
     }, 100);
 }
 
-// Set up mutation observer to detect when content is rendered
 function setupContentObserver() {
     const observer = new MutationObserver((mutations) => {
         let shouldAddButtons = false;
@@ -450,7 +443,6 @@ function setupContentObserver() {
             ) {
                 mutation.addedNodes.forEach((node) => {
                     if (node.nodeType === Node.ELEMENT_NODE) {
-                        // Check if any pre elements were added
                         if (
                             node.tagName === "PRE" ||
                             (node.querySelector && node.querySelector("pre"))
@@ -469,7 +461,6 @@ function setupContentObserver() {
         }
     });
 
-    // Start observing the document with the configured parameters
     const target = document.querySelector(".prose") || document.body;
     observer.observe(target, {
         childList: true,
@@ -477,7 +468,6 @@ function setupContentObserver() {
     });
 }
 
-// Add copy buttons to code blocks
 function addCopyButtonsToCodeBlocks() {
     if (!import.meta.client) return;
 
@@ -490,14 +480,11 @@ function addCopyButtonsToCodeBlocks() {
             const codeBlock = pre.querySelector("code");
             if (!codeBlock) return;
 
-            // Mark as processed
             pre.classList.add("has-copy-btn");
 
-            // Create header with copy button
             const header = document.createElement("div");
             header.className = "code-header";
 
-            // Debug logging to see what classes we have
             if (import.meta) {
                 console.log("Code block classes:", codeBlock.className);
                 console.log("Pre element classes:", pre.className);
@@ -507,10 +494,8 @@ function addCopyButtonsToCodeBlocks() {
                 );
             }
 
-            // Get language from various sources
             let language = "text";
 
-            // Method 1: Check code element class attribute
             const codeLanguageMatch =
                 codeBlock.className.match(/language-(\w+)/);
             if (codeLanguageMatch) {
@@ -519,7 +504,6 @@ function addCopyButtonsToCodeBlocks() {
                     console.log("Found language from code class:", language);
             }
 
-            // Method 2: Check pre element class attribute
             if (language === "text") {
                 const preLanguageMatch = pre.className.match(/language-(\w+)/);
                 if (preLanguageMatch) {
@@ -529,7 +513,6 @@ function addCopyButtonsToCodeBlocks() {
                 }
             }
 
-            // Method 3: Check for highlight.js classes
             if (language === "text") {
                 const hlMatch = (
                     codeBlock.className +
@@ -546,7 +529,6 @@ function addCopyButtonsToCodeBlocks() {
                 }
             }
 
-            // Method 4: Check data attributes
             if (language === "text") {
                 const dataLang =
                     codeBlock.getAttribute("data-language") ||
@@ -561,7 +543,6 @@ function addCopyButtonsToCodeBlocks() {
                 }
             }
 
-            // Method 5: Try to parse from the code content structure
             if (language === "text") {
                 const firstLine = codeBlock.textContent.split("\n")[0];
                 if (firstLine.includes("```")) {
@@ -577,7 +558,6 @@ function addCopyButtonsToCodeBlocks() {
                 }
             }
 
-            // Map common aliases
             const languageMap = {
                 js: "javascript",
                 ts: "typescript",
@@ -594,12 +574,10 @@ function addCopyButtonsToCodeBlocks() {
             language = languageMap[language] || language;
             if (import.meta) console.log("Final language:", language);
 
-            // Create language label
             const languageLabel = document.createElement("span");
             languageLabel.className = "code-language";
             languageLabel.textContent = language;
 
-            // Create copy button
             const copyButton = document.createElement("button");
             copyButton.className = "code-copy-btn";
             copyButton.innerHTML = `
@@ -611,35 +589,30 @@ function addCopyButtonsToCodeBlocks() {
       `;
             copyButton.setAttribute("aria-label", "Copy code to clipboard");
 
-            // Add click handler
             copyButton.addEventListener("click", (e) => {
                 e.preventDefault();
                 copyCodeToClipboard(codeBlock, copyButton);
             });
 
-            // Assemble header
             header.appendChild(languageLabel);
             header.appendChild(copyButton);
 
-            // Add header before the code block
             pre.style.position = "relative";
             pre.insertBefore(header, codeBlock);
         });
     });
 }
 
-// Copy code to clipboard
 async function copyCodeToClipboard(codeElement, button) {
     if (!import.meta.client) return;
 
     try {
         const code = codeElement.textContent || codeElement.innerText;
-        const cleanCode = code.replace(/^\n+|\n+$/g, ""); // Remove leading/trailing newlines
+        const cleanCode = code.replace(/^\n+|\n+$/g, "");
 
         if (navigator.clipboard && window.isSecureContext) {
             await navigator.clipboard.writeText(cleanCode);
         } else {
-            // Fallback for older browsers or non-HTTPS
             const textArea = document.createElement("textarea");
             textArea.value = cleanCode;
             textArea.style.position = "fixed";
@@ -657,16 +630,14 @@ async function copyCodeToClipboard(codeElement, button) {
             }
         }
 
-        // Update button appearance
         const originalHTML = button.innerHTML;
         const span = button.querySelector("span");
         if (span) {
             span.textContent = "Copied!";
         }
-        button.style.color = "#10b981"; // Green color
+        button.style.color = "#10b981";
         button.disabled = true;
 
-        // Reset after 2 seconds
         setTimeout(() => {
             button.innerHTML = originalHTML;
             button.style.color = "";
@@ -675,12 +646,11 @@ async function copyCodeToClipboard(codeElement, button) {
     } catch (err) {
         console.error("Failed to copy code:", err);
 
-        // Show error state
         const span = button.querySelector("span");
         if (span) {
             span.textContent = "Failed!";
         }
-        button.style.color = "#ef4444"; // Red color
+        button.style.color = "#ef4444";
 
         setTimeout(() => {
             const span = button.querySelector("span");
@@ -791,7 +761,7 @@ if (error.value) {
 </script>
 
 <style>
-/* Portfolio body styles */
+
 .portfolio-body {
     font-family:
         "Geist",
@@ -830,10 +800,10 @@ if (error.value) {
     color: #1a1a1a;
 }
 
-/* Theme toggle button */
-/* Theme toggle styles are now handled by Tailwind classes in the template */
 
-/* Blog post content styling */
+
+
+
 .blog-post {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
@@ -847,7 +817,7 @@ if (error.value) {
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-/* Custom prose styling */
+
 .prose {
     color: inherit;
 }
@@ -932,7 +902,7 @@ if (error.value) {
     border-radius: 0;
 }
 
-/* Code block header */
+
 .code-header {
     display: flex;
     justify-content: space-between;
@@ -1042,13 +1012,13 @@ if (error.value) {
     background: rgba(255, 255, 255, 0.1);
 }
 
-/* Fix scroll issues */
+
 html,
 body {
     overflow-x: hidden;
 }
 
-/* Theme toggle icons */
+
 .theme-icon-sun {
     filter: brightness(1.3);
 }
@@ -1057,7 +1027,7 @@ body {
     filter: brightness(0.7);
 }
 
-/* Custom scrollbar */
+
 ::-webkit-scrollbar {
     width: 6px;
     height: 6px;

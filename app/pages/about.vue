@@ -768,7 +768,6 @@ import { ref, onMounted } from "vue";
 
 const isDark = ref(false);
 
-// SEO Meta Tags
 useHead({
     title: "About Harsh Patel | Full Stack Developer & Computer Science Student",
     meta: [
@@ -793,7 +792,6 @@ useHead({
         { name: "googlebot", content: "index, follow" },
         { name: "theme-color", content: "#0ea5e9" },
 
-        // Open Graph tags
         { property: "og:type", content: "profile" },
         {
             property: "og:title",
@@ -819,7 +817,6 @@ useHead({
         },
         { property: "og:locale", content: "en_US" },
 
-        // Twitter Card tags
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:creator", content: "@harshpatel5940" },
         { name: "twitter:site", content: "@harshpatel5940" },
@@ -842,7 +839,6 @@ useHead({
             content: "Harsh Nikul Patel - Full Stack Developer Portfolio",
         },
 
-        // Additional profile tags
         { property: "profile:first_name", content: "Harsh" },
         { property: "profile:last_name", content: "Patel" },
         { property: "profile:username", content: "harshpatel5940" },
@@ -962,7 +958,6 @@ useHead({
     ],
 });
 
-// Theme management
 onMounted(() => {
     initializeTheme();
 });
@@ -996,7 +991,6 @@ function applyTheme() {
 
     document.body.style.backgroundSize = "2rem 2rem";
 
-    // Always allow scrolling on about page
     document.body.style.overflow = "auto";
     document.body.style.overflowX = "hidden";
 
@@ -1109,13 +1103,13 @@ function toggleTheme() {
     color: #4ade80;
 }
 
-/* Fix scroll issues */
+
 html,
 body {
     overflow-x: hidden;
 }
 
-/* Custom scrollbar */
+
 ::-webkit-scrollbar {
     width: 6px;
 }

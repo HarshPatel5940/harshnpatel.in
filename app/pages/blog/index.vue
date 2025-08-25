@@ -434,7 +434,6 @@ useHead({
         },
         { name: "googlebot", content: "index, follow" },
 
-        // Open Graph tags
         { property: "og:type", content: "website" },
         {
             property: "og:title",
@@ -459,7 +458,6 @@ useHead({
         },
         { property: "og:locale", content: "en_US" },
 
-        // Twitter Card tags
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:creator", content: "@harshpatel5940" },
         { name: "twitter:site", content: "@harshpatel5940" },
@@ -559,7 +557,6 @@ useHead({
 </script>
 
 <style scoped>
-/* Portfolio body styles */
 .portfolio-body {
     font-family:
         "Geist",
@@ -598,7 +595,6 @@ useHead({
     color: #1a1a1a;
 }
 
-/* Article cards with theme support */
 .blog-article {
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
@@ -623,7 +619,6 @@ useHead({
     box-shadow: 0 12px 40px rgba(255, 255, 255, 0.1);
 }
 
-/* Search container */
 .search-container {
     position: relative;
     width: 100%;
@@ -816,13 +811,11 @@ useHead({
     }
 }
 
-/* Fix scroll issues */
 html,
 body {
     overflow-x: hidden;
 }
 
-/* Theme toggle icons */
 .theme-icon-sun {
     filter: brightness(1.3);
 }
@@ -831,7 +824,6 @@ body {
     filter: brightness(0.7);
 }
 
-/* Code styling for any inline code in descriptions */
 .prose code {
     @apply px-1.5 py-0.5 rounded text-sm font-mono;
     font-weight: 500;
@@ -848,7 +840,6 @@ body {
     color: inherit !important;
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
     width: 6px;
 }
