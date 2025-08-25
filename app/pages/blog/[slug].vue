@@ -1,124 +1,9 @@
 <template>
-    <div
-        :class="[
-            'min-h-screen transition-colors duration-300',
-            isDark ? 'portfolio-body dark' : 'portfolio-body light',
-        ]"
+    <MainLayout
+        :show-back-button="true"
+        back-to="/blog"
+        back-text="Back to Blog"
     >
-        <!-- Header -->
-        <header
-            class="sticky top-0 z-10 backdrop-blur-sm border-0 transition-colors duration-300"
-            :class="[isDark ? 'bg-gray-900/80' : 'bg-white/80']"
-        >
-            <div class="max-w-4xl mx-auto px-4 py-4">
-                <div class="flex items-center justify-between">
-                    <NuxtLink
-                        to="/blog"
-                        class="font-medium flex items-center transition-colors duration-300"
-                        :class="[
-                            isDark
-                                ? 'text-green-400 hover:text-green-300'
-                                : 'text-green-600 hover:text-green-700',
-                        ]"
-                    >
-                        <svg
-                            class="mr-2 w-4 h-4"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                        >
-                            <path
-                                fill-rule="evenodd"
-                                d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                                clip-rule="evenodd"
-                            />
-                        </svg>
-                        Back to Blog
-                    </NuxtLink>
-                    <div class="flex items-center gap-3">
-                        <button
-                            class="flex items-center justify-center w-12 h-12 rounded-lg transition-all duration-300 bg-transparent border-0 backdrop-blur-sm"
-                            :class="[
-                                isDark
-                                    ? 'text-green-400 hover:text-green-300 hover:bg-green-400/10'
-                                    : 'text-green-600 hover:text-green-700 hover:bg-green-600/10',
-                            ]"
-                            aria-label="Toggle theme"
-                            @click="toggleTheme"
-                        >
-                            <svg
-                                v-if="isDark"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="theme-icon-sun"
-                            >
-                                <path
-                                    d="M12 2V6M12 18V22M4.93 4.93L7.76 7.76M16.24 16.24L19.07 19.07M2 12H6M18 12H22M4.93 19.07L7.76 16.24M16.24 7.76L19.07 4.93"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                />
-                                <circle
-                                    cx="12"
-                                    cy="12"
-                                    r="5"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    fill="none"
-                                />
-                            </svg>
-                            <svg
-                                v-else
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="theme-icon-moon"
-                            >
-                                <path
-                                    d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                        </button>
-                        <NuxtLink
-                            to="/"
-                            class="font-medium transition-all duration-300 flex items-center justify-center w-12 h-12 rounded-lg bg-transparent border border-green-500/20 backdrop-blur-sm"
-                            :class="[
-                                isDark
-                                    ? 'text-green-400 hover:text-green-300 hover:bg-green-400/10 hover:border-green-400/40'
-                                    : 'text-green-600 hover:text-green-700 hover:bg-green-600/10 hover:border-green-600/40',
-                            ]"
-                            aria-label="Go to Home"
-                        >
-                            <svg
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            >
-                                <path
-                                    d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
-                                />
-                                <polyline points="9,22 9,12 15,12 15,22" />
-                            </svg>
-                        </NuxtLink>
-                    </div>
-                </div>
-            </div>
-        </header>
-
         <!-- Loading State -->
         <div v-if="pending" class="max-w-4xl mx-auto px-4 py-12 text-center">
             <div
@@ -343,27 +228,11 @@
                 </div>
             </footer>
         </article>
-
-        <!-- Footer -->
-        <footer
-            class="border-t mt-16 transition-colors duration-300"
-            :class="isDark ? 'border-gray-700' : 'border-gray-200'"
-        >
-            <div class="max-w-4xl mx-auto px-4 py-8 text-center">
-                <p
-                    class="transition-colors duration-300"
-                    :class="isDark ? 'text-gray-400' : 'text-gray-600'"
-                >
-                    © {{ new Date().getFullYear() }} Harsh Patel. All rights
-                    reserved.
-                </p>
-            </div>
-        </footer>
-    </div>
+    </MainLayout>
 </template>
 
 <script setup>
-const isDark = ref(false);
+const { isDark } = useTheme();
 
 const route = useRoute();
 const slug = route.params.slug;
@@ -407,8 +276,6 @@ const {
 });
 
 onMounted(() => {
-    initializeTheme();
-
     if (import.meta.client) {
         setupContentObserver();
     }
@@ -485,76 +352,18 @@ function addCopyButtonsToCodeBlocks() {
             const header = document.createElement("div");
             header.className = "code-header";
 
-            if (import.meta) {
-                console.log("Code block classes:", codeBlock.className);
-                console.log("Pre element classes:", pre.className);
-                console.log(
-                    "Code block HTML:",
-                    codeBlock.outerHTML.substring(0, 200),
-                );
-            }
-
             let language = "text";
 
             const codeLanguageMatch =
                 codeBlock.className.match(/language-(\w+)/);
             if (codeLanguageMatch) {
                 language = codeLanguageMatch[1];
-                if (import.meta)
-                    console.log("Found language from code class:", language);
             }
 
             if (language === "text") {
                 const preLanguageMatch = pre.className.match(/language-(\w+)/);
                 if (preLanguageMatch) {
                     language = preLanguageMatch[1];
-                    if (import.meta)
-                        console.log("Found language from pre class:", language);
-                }
-            }
-
-            if (language === "text") {
-                const hlMatch = (
-                    codeBlock.className +
-                    " " +
-                    pre.className
-                ).match(/(?:^|\s)hljs-(\w+)/);
-                if (hlMatch) {
-                    language = hlMatch[1];
-                    if (import.meta)
-                        console.log(
-                            "Found language from highlight.js:",
-                            language,
-                        );
-                }
-            }
-
-            if (language === "text") {
-                const dataLang =
-                    codeBlock.getAttribute("data-language") ||
-                    pre.getAttribute("data-language");
-                if (dataLang) {
-                    language = dataLang;
-                    if (import.meta)
-                        console.log(
-                            "Found language from data attribute:",
-                            language,
-                        );
-                }
-            }
-
-            if (language === "text") {
-                const firstLine = codeBlock.textContent.split("\n")[0];
-                if (firstLine.includes("```")) {
-                    const langMatch = firstLine.match(/```(\w+)/);
-                    if (langMatch) {
-                        language = langMatch[1];
-                        if (import.meta)
-                            console.log(
-                                "Found language from code content:",
-                                language,
-                            );
-                    }
                 }
             }
 
@@ -569,10 +378,10 @@ function addCopyButtonsToCodeBlocks() {
                 shell: "bash",
                 yml: "yaml",
                 dockerfile: "docker",
+                go: "go",
             };
 
             language = languageMap[language] || language;
-            if (import.meta) console.log("Final language:", language);
 
             const languageLabel = document.createElement("span");
             languageLabel.className = "code-language";
@@ -581,12 +390,12 @@ function addCopyButtonsToCodeBlocks() {
             const copyButton = document.createElement("button");
             copyButton.className = "code-copy-btn";
             copyButton.innerHTML = `
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-        </svg>
-        <span>Copy</span>
-      `;
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <span>Copy</span>
+            `;
             copyButton.setAttribute("aria-label", "Copy code to clipboard");
 
             copyButton.addEventListener("click", (e) => {
@@ -660,47 +469,6 @@ async function copyCodeToClipboard(codeElement, button) {
             button.style.color = "";
         }, 2000);
     }
-}
-
-function initializeTheme() {
-    const savedTheme = localStorage.getItem("theme");
-    isDark.value =
-        savedTheme === "dark" ||
-        (!savedTheme &&
-            window.matchMedia("(prefers-color-scheme: dark)").matches);
-    applyTheme();
-}
-
-function applyTheme() {
-    document.body.className = isDark.value
-        ? "portfolio-body dark"
-        : "portfolio-body light";
-    document.body.style.fontFamily = '"Geist-Regular", sans-serif';
-    document.body.style.margin = "0";
-    document.body.style.padding = "0";
-
-    if (isDark.value) {
-        document.body.style.backgroundColor = "#0a1f0f";
-        document.body.style.backgroundImage =
-            "radial-gradient(circle at 1px 1px, #05fc70 1px, transparent 0)";
-        document.body.style.color = "#ffffff";
-    } else {
-        document.body.style.backgroundColor = "#f0fdf4";
-        document.body.style.backgroundImage =
-            "radial-gradient(circle at 1px 1px, #86efac 1px, transparent 0)";
-        document.body.style.color = "#1a1a1a";
-    }
-
-    document.body.style.backgroundSize = "2rem 2rem";
-    document.body.style.overflow = "auto";
-    document.body.style.overflowX = "hidden";
-
-    localStorage.setItem("theme", isDark.value ? "dark" : "light");
-}
-
-function toggleTheme() {
-    isDark.value = !isDark.value;
-    applyTheme();
 }
 
 const currentUrl = computed(() => {
@@ -781,44 +549,6 @@ if (error.value) {
 </script>
 
 <style>
-.portfolio-body {
-    font-family:
-        "Geist",
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        sans-serif;
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    transition:
-        background-color 0.3s ease,
-        color 0.3s ease;
-}
-
-.portfolio-body.dark {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-    background-image: radial-gradient(
-        circle at 1px 1px,
-        #05fc70 1px,
-        transparent 0
-    );
-    background-size: 20px 20px;
-    color: #ffffff;
-}
-
-.portfolio-body.light {
-    background: linear-gradient(135deg, #8ff99f 0%, #b8ffd1 100%);
-    background-image: radial-gradient(
-        circle at 1px 1px,
-        rgba(0, 0, 0, 0.1) 1px,
-        transparent 0
-    );
-    background-size: 20px 20px;
-    color: #1a1a1a;
-}
-
 .blog-post {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
@@ -1023,36 +753,5 @@ if (error.value) {
 
 .dark .prose th {
     background: rgba(255, 255, 255, 0.1);
-}
-
-html,
-body {
-    overflow-x: hidden;
-}
-
-.theme-icon-sun {
-    filter: brightness(1.3);
-}
-
-.theme-icon-moon {
-    filter: brightness(0.7);
-}
-
-::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-}
-
-::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #22c55e;
-    border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #16a34a;
 }
 </style>

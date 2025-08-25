@@ -1,114 +1,19 @@
 <template>
-    <div
-        :class="[
-            'min-h-screen transition-colors duration-300',
-            isDark ? 'portfolio-body dark' : 'portfolio-body light',
-        ]"
-    >
-        <!-- Header -->
-        <header
-            class="sticky top-0 z-10 backdrop-blur-sm transition-colors duration-300"
-            :class="[isDark ? 'bg-gray-900/80' : 'bg-white/80']"
-        >
-            <div class="max-w-4xl mx-auto px-4 py-6">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <h1
-                            class="text-3xl font-bold transition-colors duration-300"
-                        >
-                            Blog
-                        </h1>
-                        <p
-                            class="mt-1 transition-colors duration-300"
-                            :class="isDark ? 'text-gray-400' : 'text-gray-600'"
-                        >
-                            Thoughts on development, technology, and more
-                        </p>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <button
-                            class="flex items-center justify-center w-12 h-12 rounded-lg transition-all duration-300 bg-transparent backdrop-blur-md border-0"
-                            :class="[
-                                isDark
-                                    ? 'text-green-400 hover:text-green-300 hover:bg-green-400/10'
-                                    : 'text-green-600 hover:text-green-700 hover:bg-green-600/10',
-                            ]"
-                            aria-label="Toggle theme"
-                            @click="toggleTheme"
-                        >
-                            <svg
-                                v-if="isDark"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="theme-icon-sun"
-                            >
-                                <path
-                                    d="M12 2V6M12 18V22M4.93 4.93L7.76 7.76M16.24 16.24L19.07 19.07M2 12H6M18 12H22M4.93 19.07L7.76 16.24M16.24 7.76L19.07 4.93"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                />
-                                <circle
-                                    cx="12"
-                                    cy="12"
-                                    r="5"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    fill="none"
-                                />
-                            </svg>
-                            <svg
-                                v-else
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="theme-icon-moon"
-                            >
-                                <path
-                                    d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                        </button>
-                        <NuxtLink
-                            to="/"
-                            class="font-medium transition-all duration-300 flex items-center justify-center w-12 h-12 rounded-lg bg-transparent border border-green-500/20 backdrop-blur-sm"
-                            :class="[
-                                isDark
-                                    ? 'text-green-400 hover:text-green-300 hover:bg-green-400/10 hover:border-green-400/40'
-                                    : 'text-green-600 hover:text-green-700 hover:bg-green-600/10 hover:border-green-600/40',
-                            ]"
-                            aria-label="Go to Home"
-                        >
-                            <svg
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            >
-                                <path
-                                    d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
-                                />
-                                <polyline points="9,22 9,12 15,12 15,22" />
-                            </svg>
-                        </NuxtLink>
-                    </div>
-                </div>
+    <MainLayout title="Blog">
+        <!-- Page Header -->
+        <div class="max-w-4xl mx-auto px-4 py-6">
+            <div>
+                <h1 class="text-3xl font-bold transition-colors duration-300">
+                    Blog
+                </h1>
+                <p
+                    class="mt-1 transition-colors duration-300"
+                    :class="isDark ? 'text-gray-400' : 'text-gray-600'"
+                >
+                    Thoughts on development, technology, and more
+                </p>
             </div>
-        </header>
+        </div>
 
         <!-- Search Bar -->
         <div class="max-w-4xl mx-auto px-4 pt-3">
@@ -306,74 +211,13 @@
                 </article>
             </div>
         </main>
-
-        <!-- Footer -->
-        <footer
-            class="border-t mt-16 transition-colors duration-300"
-            :class="isDark ? 'border-gray-700' : 'border-gray-200'"
-        >
-            <div class="max-w-4xl mx-auto px-4 py-8 text-center">
-                <p
-                    class="transition-colors duration-300"
-                    :class="isDark ? 'text-gray-400' : 'text-gray-600'"
-                >
-                    © {{ new Date().getFullYear() }} Harsh Patel. All rights
-                    reserved.
-                </p>
-            </div>
-        </footer>
-    </div>
+    </MainLayout>
 </template>
 
 <script setup>
-const isDark = ref(false);
+const { isDark } = useTheme();
 
 const searchQuery = ref("");
-
-onMounted(() => {
-    initializeTheme();
-});
-
-function initializeTheme() {
-    const savedTheme = localStorage.getItem("theme");
-    isDark.value =
-        savedTheme === "dark" ||
-        (!savedTheme &&
-            window.matchMedia("(prefers-color-scheme: dark)").matches);
-    applyTheme();
-}
-
-function applyTheme() {
-    document.body.className = isDark.value
-        ? "portfolio-body dark"
-        : "portfolio-body light";
-    document.body.style.fontFamily = '"Geist-Regular", sans-serif';
-    document.body.style.margin = "0";
-    document.body.style.padding = "0";
-
-    if (isDark.value) {
-        document.body.style.backgroundColor = "#0a1f0f";
-        document.body.style.backgroundImage =
-            "radial-gradient(circle at 1px 1px, #05fc70 1px, transparent 0)";
-        document.body.style.color = "#ffffff";
-    } else {
-        document.body.style.backgroundColor = "#f0fdf4";
-        document.body.style.backgroundImage =
-            "radial-gradient(circle at 1px 1px, #86efac 1px, transparent 0)";
-        document.body.style.color = "#1a1a1a";
-    }
-
-    document.body.style.backgroundSize = "2rem 2rem";
-    document.body.style.overflow = "auto";
-    document.body.style.overflowX = "hidden";
-
-    localStorage.setItem("theme", isDark.value ? "dark" : "light");
-}
-
-function toggleTheme() {
-    isDark.value = !isDark.value;
-    applyTheme();
-}
 
 const {
     data: posts,
@@ -577,44 +421,6 @@ useHead({
 </script>
 
 <style scoped>
-.portfolio-body {
-    font-family:
-        "Geist",
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        sans-serif;
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    transition:
-        background-color 0.3s ease,
-        color 0.3s ease;
-}
-
-.portfolio-body.dark {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-    background-image: radial-gradient(
-        circle at 1px 1px,
-        #05fc70 1px,
-        transparent 0
-    );
-    background-size: 20px 20px;
-    color: #ffffff;
-}
-
-.portfolio-body.light {
-    background: linear-gradient(135deg, #8ff99f 0%, #b8ffd1 100%);
-    background-image: radial-gradient(
-        circle at 1px 1px,
-        rgba(0, 0, 0, 0.1) 1px,
-        transparent 0
-    );
-    background-size: 20px 20px;
-    color: #1a1a1a;
-}
-
 .blog-article {
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
@@ -831,49 +637,19 @@ useHead({
     }
 }
 
-html,
-body {
-    overflow-x: hidden;
-}
+@media (max-width: 480px) {
+    .search-container {
+        max-width: 100%;
+    }
 
-.theme-icon-sun {
-    filter: brightness(1.3);
-}
+    .search-icon-wrapper {
+        left: 0.75rem;
+    }
 
-.theme-icon-moon {
-    filter: brightness(0.7);
-}
-
-.prose code {
-    @apply px-1.5 py-0.5 rounded text-sm font-mono;
-    font-weight: 500;
-}
-
-.light .prose code {
-    background: rgba(0, 0, 0, 0.05);
-    color: inherit !important;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.dark .prose code {
-    background: rgba(255, 255, 255, 0.1);
-    color: inherit !important;
-}
-
-::-webkit-scrollbar {
-    width: 6px;
-}
-
-::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #22c55e;
-    border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #16a34a;
+    .clear-search {
+        right: 0.75rem;
+        width: 24px;
+        height: 24px;
+    }
 }
 </style>

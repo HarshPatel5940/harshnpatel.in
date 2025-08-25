@@ -1,130 +1,10 @@
 <template>
-    <div
-        :class="[
-            'min-h-screen transition-colors duration-300 about-page',
-            isDark ? 'portfolio-body dark' : 'portfolio-body light',
-        ]"
+    <MainLayout
+        title="About Me"
+        :show-back-button="true"
+        back-to="/"
+        back-text="Back to Home"
     >
-        <!-- Header -->
-        <header
-            class="sticky top-0 z-10 backdrop-blur-sm border-b transition-colors duration-300"
-            :class="[
-                isDark
-                    ? 'border-gray-700 bg-gray-900/80'
-                    : 'border-gray-200 bg-white/80',
-            ]"
-        >
-            <div class="max-w-4xl mx-auto px-4 py-4">
-                <div class="flex items-center justify-between">
-                    <NuxtLink
-                        to="/"
-                        class="font-medium flex items-center transition-colors duration-300"
-                        :class="[
-                            isDark
-                                ? 'text-green-400 hover:text-green-300'
-                                : 'text-green-600 hover:text-green-700',
-                        ]"
-                    >
-                        <svg
-                            class="mr-2 w-4 h-4"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                        >
-                            <path
-                                fill-rule="evenodd"
-                                d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                                clip-rule="evenodd"
-                            />
-                        </svg>
-                        Back to Home
-                    </NuxtLink>
-                    <div class="flex items-center gap-3">
-                        <button
-                            class="flex items-center justify-center w-12 h-12 rounded-lg transition-all duration-300 bg-transparent border border-green-500/20 backdrop-blur-sm"
-                            :class="[
-                                isDark
-                                    ? 'text-green-400 hover:text-green-300 hover:bg-green-400/10 hover:border-green-400/40'
-                                    : 'text-green-600 hover:text-green-700 hover:bg-green-600/10 hover:border-green-600/40',
-                            ]"
-                            aria-label="Toggle theme"
-                            @click="toggleTheme"
-                        >
-                            <svg
-                                v-if="isDark"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="theme-icon-sun"
-                            >
-                                <path
-                                    d="M12 2V6M12 18V22M4.93 4.93L7.76 7.76M16.24 16.24L19.07 19.07M2 12H6M18 12H22M4.93 19.07L7.76 16.24M16.24 7.76L19.07 4.93"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                />
-                                <circle
-                                    cx="12"
-                                    cy="12"
-                                    r="5"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    fill="none"
-                                />
-                            </svg>
-                            <svg
-                                v-else
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="theme-icon-moon"
-                            >
-                                <path
-                                    d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                        </button>
-                        <NuxtLink
-                            to="/blog"
-                            class="font-medium transition-all duration-300 flex items-center justify-center w-12 h-12 rounded-lg bg-transparent border border-green-500/20 backdrop-blur-sm"
-                            :class="[
-                                isDark
-                                    ? 'text-green-400 hover:text-green-300 hover:bg-green-400/10 hover:border-green-400/40'
-                                    : 'text-green-600 hover:text-green-700 hover:bg-green-600/10 hover:border-green-600/40',
-                            ]"
-                            aria-label="Go to Blog"
-                        >
-                            <svg
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            >
-                                <path d="M12 19l7-7 3 3-7 7-3-3z" />
-                                <path
-                                    d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"
-                                />
-                                <path d="M2 2l7.586 7.586" />
-                                <circle cx="11" cy="11" r="2" />
-                            </svg>
-                        </NuxtLink>
-                    </div>
-                </div>
-            </div>
-        </header>
-
         <!-- Main Content -->
         <main class="max-w-4xl mx-auto px-4 py-12">
             <!-- Hero Section -->
@@ -145,7 +25,7 @@
                                 <img
                                     src="/harshnpatel.jpeg"
                                     alt="Harsh Patel"
-                                    class="w-72 h-72 rounded-full object-cover border-8 border-gradient-to-br from-green-400 to-green-600 shadow-2xl"
+                                    class="w-72 h-72 rounded-full object-cover border-8 border-gradient-to-br from-green-400 to-green-600 shadow-2xl transition-all duration-300"
                                     :class="[
                                         isDark
                                             ? 'border-green-400/50 shadow-green-400/20'
@@ -165,7 +45,8 @@
                     <!-- Content Side -->
                     <div class="text-center lg:text-left">
                         <h1
-                            class="text-4xl md:text-6xl font-bold mb-6 leading-tight"
+                            class="text-4xl md:text-6xl font-bold mb-6 leading-tight transition-colors duration-300"
+                            :class="isDark ? 'text-white' : 'text-gray-900'"
                         >
                             About Me :D
                         </h1>
@@ -181,7 +62,7 @@
                             class="flex flex-wrap gap-4 justify-center lg:justify-start"
                         >
                             <span
-                                class="px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300"
+                                class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300"
                                 :class="[
                                     isDark
                                         ? 'bg-green-400/20 text-green-300 border border-green-400/30'
@@ -191,7 +72,7 @@
                                 FOSS Enthusiast
                             </span>
                             <span
-                                class="px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300"
+                                class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300"
                                 :class="[
                                     isDark
                                         ? 'bg-blue-400/20 text-blue-300 border border-blue-400/30'
@@ -201,7 +82,7 @@
                                 Developer
                             </span>
                             <span
-                                class="px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300"
+                                class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300"
                                 :class="[
                                     isDark
                                         ? 'bg-purple-400/20 text-purple-300 border border-purple-400/30'
@@ -229,17 +110,29 @@
                         </h2>
                         <div class="grid sm:grid-cols-2 gap-6">
                             <div
-                                class="p-6 rounded-lg transition-colors duration-300"
+                                class="p-6 rounded-lg transition-all duration-300"
                                 :class="[
                                     isDark
-                                        ? 'bg-gray-800/50 border border-gray-700'
-                                        : 'bg-gray-50 border border-gray-200',
+                                        ? 'bg-gray-800/50 border border-gray-700 text-gray-200'
+                                        : 'bg-gray-50 border border-gray-200 text-gray-900',
                                 ]"
                             >
-                                <h3 class="font-semibold mb-3">
+                                <h3
+                                    class="font-semibold mb-3 transition-colors duration-300"
+                                    :class="
+                                        isDark ? 'text-white' : 'text-gray-900'
+                                    "
+                                >
                                     Backend Development
                                 </h3>
-                                <ul class="space-y-1 text-sm">
+                                <ul
+                                    class="space-y-1 text-sm transition-colors duration-300"
+                                    :class="
+                                        isDark
+                                            ? 'text-gray-300'
+                                            : 'text-gray-600'
+                                    "
+                                >
                                     <li>Go (Echo Framework)</li>
                                     <li>Node.js & TypeScript</li>
                                     <li>NestJS, Express.js & Hono</li>
@@ -248,17 +141,29 @@
                                 </ul>
                             </div>
                             <div
-                                class="p-6 rounded-lg transition-colors duration-300"
+                                class="p-6 rounded-lg transition-all duration-300"
                                 :class="[
                                     isDark
-                                        ? 'bg-gray-800/50 border border-gray-700'
-                                        : 'bg-gray-50 border border-gray-200',
+                                        ? 'bg-gray-800/50 border border-gray-700 text-gray-200'
+                                        : 'bg-gray-50 border border-gray-200 text-gray-900',
                                 ]"
                             >
-                                <h3 class="font-semibold mb-3">
+                                <h3
+                                    class="font-semibold mb-3 transition-colors duration-300"
+                                    :class="
+                                        isDark ? 'text-white' : 'text-gray-900'
+                                    "
+                                >
                                     Frontend Development
                                 </h3>
-                                <ul class="space-y-1 text-sm">
+                                <ul
+                                    class="space-y-1 text-sm transition-colors duration-300"
+                                    :class="
+                                        isDark
+                                            ? 'text-gray-300'
+                                            : 'text-gray-600'
+                                    "
+                                >
                                     <li>React & Next.js</li>
                                     <li>Vue.js & Nuxt.js</li>
                                     <li>TypeScript & JavaScript</li>
@@ -267,17 +172,29 @@
                                 </ul>
                             </div>
                             <div
-                                class="p-6 rounded-lg transition-colors duration-300"
+                                class="p-6 rounded-lg transition-all duration-300"
                                 :class="[
                                     isDark
-                                        ? 'bg-gray-800/50 border border-gray-700'
-                                        : 'bg-gray-50 border border-gray-200',
+                                        ? 'bg-gray-800/50 border border-gray-700 text-gray-200'
+                                        : 'bg-gray-50 border border-gray-200 text-gray-900',
                                 ]"
                             >
-                                <h3 class="font-semibold mb-3">
+                                <h3
+                                    class="font-semibold mb-3 transition-colors duration-300"
+                                    :class="
+                                        isDark ? 'text-white' : 'text-gray-900'
+                                    "
+                                >
                                     Database & Cloud
                                 </h3>
-                                <ul class="space-y-1 text-sm">
+                                <ul
+                                    class="space-y-1 text-sm transition-colors duration-300"
+                                    :class="
+                                        isDark
+                                            ? 'text-gray-300'
+                                            : 'text-gray-600'
+                                    "
+                                >
                                     <li>AWS, GCP & Cloudflare</li>
                                     <li>Supabase & Azure (Basic)</li>
                                     <li>PostgreSQL & MongoDB</li>
@@ -286,17 +203,29 @@
                                 </ul>
                             </div>
                             <div
-                                class="p-6 rounded-lg transition-colors duration-300"
+                                class="p-6 rounded-lg transition-all duration-300"
                                 :class="[
                                     isDark
-                                        ? 'bg-gray-800/50 border border-gray-700'
-                                        : 'bg-gray-50 border border-gray-200',
+                                        ? 'bg-gray-800/50 border border-gray-700 text-gray-200'
+                                        : 'bg-gray-50 border border-gray-200 text-gray-900',
                                 ]"
                             >
-                                <h3 class="font-semibold mb-3">
+                                <h3
+                                    class="font-semibold mb-3 transition-colors duration-300"
+                                    :class="
+                                        isDark ? 'text-white' : 'text-gray-900'
+                                    "
+                                >
                                     Tools & Practices
                                 </h3>
-                                <ul class="space-y-1 text-sm">
+                                <ul
+                                    class="space-y-1 text-sm transition-colors duration-300"
+                                    :class="
+                                        isDark
+                                            ? 'text-gray-300'
+                                            : 'text-gray-600'
+                                    "
+                                >
                                     <li>Team Management</li>
                                     <li>CI/CD Pipelines</li>
                                     <li>Chatbots & Automation</li>
@@ -317,21 +246,40 @@
                         </h2>
                         <div class="space-y-6">
                             <div
-                                class="p-6 rounded-lg transition-colors duration-300"
+                                class="p-6 rounded-lg transition-all duration-300"
                                 :class="[
                                     isDark
                                         ? 'bg-gray-800/50 border border-gray-700'
                                         : 'bg-gray-50 border border-gray-200',
                                 ]"
                             >
-                                <h3 class="font-semibold mb-2">
+                                <h3
+                                    class="font-semibold mb-2 transition-colors duration-300"
+                                    :class="
+                                        isDark ? 'text-white' : 'text-gray-900'
+                                    "
+                                >
                                     Software Development Engineer – FTC
                                 </h3>
-                                <p class="text-sm mb-2 opacity-70">
+                                <p
+                                    class="text-sm mb-2 opacity-70 transition-colors duration-300"
+                                    :class="
+                                        isDark
+                                            ? 'text-gray-400'
+                                            : 'text-gray-600'
+                                    "
+                                >
                                     Futra.ltd • Jun 2025 - Present • Remote,
                                     Hong Kong
                                 </p>
-                                <p class="text-sm">
+                                <p
+                                    class="text-sm transition-colors duration-300"
+                                    :class="
+                                        isDark
+                                            ? 'text-gray-300'
+                                            : 'text-gray-700'
+                                    "
+                                >
                                     Leading development of 3 web platforms
                                     (Next.js) and a large-scale backend
                                     (NestJS). Managing full software lifecycle
@@ -340,20 +288,39 @@
                                 </p>
                             </div>
                             <div
-                                class="p-6 rounded-lg transition-colors duration-300"
+                                class="p-6 rounded-lg transition-all duration-300"
                                 :class="[
                                     isDark
                                         ? 'bg-gray-800/50 border border-gray-700'
                                         : 'bg-gray-50 border border-gray-200',
                                 ]"
                             >
-                                <h3 class="font-semibold mb-2">
+                                <h3
+                                    class="font-semibold mb-2 transition-colors duration-300"
+                                    :class="
+                                        isDark ? 'text-white' : 'text-gray-900'
+                                    "
+                                >
                                     Freelance Developer
                                 </h3>
-                                <p class="text-sm mb-2 opacity-70">
+                                <p
+                                    class="text-sm mb-2 opacity-70 transition-colors duration-300"
+                                    :class="
+                                        isDark
+                                            ? 'text-gray-400'
+                                            : 'text-gray-600'
+                                    "
+                                >
                                     Fiverr • May 2021 - Present • Remote
                                 </p>
-                                <p class="text-sm">
+                                <p
+                                    class="text-sm transition-colors duration-300"
+                                    :class="
+                                        isDark
+                                            ? 'text-gray-300'
+                                            : 'text-gray-700'
+                                    "
+                                >
                                     Delivered 30+ projects for national and
                                     international clients. Specialized in
                                     backend systems, automation workflows, and
@@ -361,20 +328,39 @@
                                 </p>
                             </div>
                             <div
-                                class="p-6 rounded-lg transition-colors duration-300"
+                                class="p-6 rounded-lg transition-all duration-300"
                                 :class="[
                                     isDark
                                         ? 'bg-gray-800/50 border border-gray-700'
                                         : 'bg-gray-50 border border-gray-200',
                                 ]"
                             >
-                                <h3 class="font-semibold mb-2">
+                                <h3
+                                    class="font-semibold mb-2 transition-colors duration-300"
+                                    :class="
+                                        isDark ? 'text-white' : 'text-gray-900'
+                                    "
+                                >
                                     Backend Developer Intern
                                 </h3>
-                                <p class="text-sm mb-2 opacity-70">
+                                <p
+                                    class="text-sm mb-2 opacity-70 transition-colors duration-300"
+                                    :class="
+                                        isDark
+                                            ? 'text-gray-400'
+                                            : 'text-gray-600'
+                                    "
+                                >
                                     Salzaa • May 24 - Jun 3, 2025 • Remote
                                 </p>
-                                <p class="text-sm">
+                                <p
+                                    class="text-sm transition-colors duration-300"
+                                    :class="
+                                        isDark
+                                            ? 'text-gray-300'
+                                            : 'text-gray-700'
+                                    "
+                                >
                                     Solely managed a large NestJS backend
                                     integrating PayU, Shiprocket. Built
                                     returns/exchange and wallet systems;
@@ -382,20 +368,39 @@
                                 </p>
                             </div>
                             <div
-                                class="p-6 rounded-lg transition-colors duration-300"
+                                class="p-6 rounded-lg transition-all duration-300"
                                 :class="[
                                     isDark
                                         ? 'bg-gray-800/50 border border-gray-700'
                                         : 'bg-gray-50 border border-gray-200',
                                 ]"
                             >
-                                <h3 class="font-semibold mb-2">
+                                <h3
+                                    class="font-semibold mb-2 transition-colors duration-300"
+                                    :class="
+                                        isDark ? 'text-white' : 'text-gray-900'
+                                    "
+                                >
                                     Frontend Developer Intern
                                 </h3>
-                                <p class="text-sm mb-2 opacity-70">
+                                <p
+                                    class="text-sm mb-2 opacity-70 transition-colors duration-300"
+                                    :class="
+                                        isDark
+                                            ? 'text-gray-400'
+                                            : 'text-gray-600'
+                                    "
+                                >
                                     TrainingMug • Feb - Apr 2024 • Remote
                                 </p>
-                                <p class="text-sm">
+                                <p
+                                    class="text-sm transition-colors duration-300"
+                                    :class="
+                                        isDark
+                                            ? 'text-gray-300'
+                                            : 'text-gray-700'
+                                    "
+                                >
                                     Integrated APIs into the existing User
                                     Module Website. Improved frontend code
                                     quality and maintainability.
@@ -414,59 +419,113 @@
                         </h2>
                         <div class="grid sm:grid-cols-2 gap-4">
                             <div
-                                class="p-4 rounded-lg transition-colors duration-300"
+                                class="p-4 rounded-lg transition-all duration-300"
                                 :class="[
                                     isDark
                                         ? 'bg-gray-800/50 border border-gray-700'
                                         : 'bg-gray-50 border border-gray-200',
                                 ]"
                             >
-                                <h3 class="font-semibold mb-2">CodeFlick</h3>
-                                <p class="text-sm">
+                                <h3
+                                    class="font-semibold mb-2 transition-colors duration-300"
+                                    :class="
+                                        isDark ? 'text-white' : 'text-gray-900'
+                                    "
+                                >
+                                    CodeFlick
+                                </h3>
+                                <p
+                                    class="text-sm transition-colors duration-300"
+                                    :class="
+                                        isDark
+                                            ? 'text-gray-300'
+                                            : 'text-gray-700'
+                                    "
+                                >
                                     Go + Vue platform for sharing and
                                     collaborating on gists.
                                 </p>
                             </div>
                             <div
-                                class="p-4 rounded-lg transition-colors duration-300"
+                                class="p-4 rounded-lg transition-all duration-300"
                                 :class="[
                                     isDark
                                         ? 'bg-gray-800/50 border border-gray-700'
                                         : 'bg-gray-50 border border-gray-200',
                                 ]"
                             >
-                                <h3 class="font-semibold mb-2">EzMs</h3>
-                                <p class="text-sm">
+                                <h3
+                                    class="font-semibold mb-2 transition-colors duration-300"
+                                    :class="
+                                        isDark ? 'text-white' : 'text-gray-900'
+                                    "
+                                >
+                                    EzMs
+                                </h3>
+                                <p
+                                    class="text-sm transition-colors duration-300"
+                                    :class="
+                                        isDark
+                                            ? 'text-gray-300'
+                                            : 'text-gray-700'
+                                    "
+                                >
                                     Robust CMS with NestJS, Supabase, Prisma
                                     backend and React frontend.
                                 </p>
                             </div>
                             <div
-                                class="p-4 rounded-lg transition-colors duration-300"
+                                class="p-4 rounded-lg transition-all duration-300"
                                 :class="[
                                     isDark
                                         ? 'bg-gray-800/50 border border-gray-700'
                                         : 'bg-gray-50 border border-gray-200',
                                 ]"
                             >
-                                <h3 class="font-semibold mb-2">DHB V2</h3>
-                                <p class="text-sm">
+                                <h3
+                                    class="font-semibold mb-2 transition-colors duration-300"
+                                    :class="
+                                        isDark ? 'text-white' : 'text-gray-900'
+                                    "
+                                >
+                                    DHB V2
+                                </h3>
+                                <p
+                                    class="text-sm transition-colors duration-300"
+                                    :class="
+                                        isDark
+                                            ? 'text-gray-300'
+                                            : 'text-gray-700'
+                                    "
+                                >
                                     Discord bot with moderation, music playback,
                                     and Lavalink integration.
                                 </p>
                             </div>
                             <div
-                                class="p-4 rounded-lg transition-colors duration-300"
+                                class="p-4 rounded-lg transition-all duration-300"
                                 :class="[
                                     isDark
                                         ? 'bg-gray-800/50 border border-gray-700'
                                         : 'bg-gray-50 border border-gray-200',
                                 ]"
                             >
-                                <h3 class="font-semibold mb-2">
+                                <h3
+                                    class="font-semibold mb-2 transition-colors duration-300"
+                                    :class="
+                                        isDark ? 'text-white' : 'text-gray-900'
+                                    "
+                                >
                                     Keyshade (Contributor)
                                 </h3>
-                                <p class="text-sm">
+                                <p
+                                    class="text-sm transition-colors duration-300"
+                                    :class="
+                                        isDark
+                                            ? 'text-gray-300'
+                                            : 'text-gray-700'
+                                    "
+                                >
                                     Bug fixes, pricing page, MinIO integration,
                                     GitHub OAuth, admin automation.
                                 </p>
@@ -484,42 +543,80 @@
                         </h2>
                         <div class="space-y-4">
                             <div
-                                class="p-6 rounded-lg transition-colors duration-300"
+                                class="p-6 rounded-lg transition-all duration-300"
                                 :class="[
                                     isDark
                                         ? 'bg-gray-800/50 border border-gray-700'
                                         : 'bg-gray-50 border border-gray-200',
                                 ]"
                             >
-                                <h3 class="font-semibold mb-2">
+                                <h3
+                                    class="font-semibold mb-2 transition-colors duration-300"
+                                    :class="
+                                        isDark ? 'text-white' : 'text-gray-900'
+                                    "
+                                >
                                     Bachelor of Technology - Computer Science &
                                     Engineering
                                 </h3>
-                                <p class="text-sm mb-2 opacity-70">
+                                <p
+                                    class="text-sm mb-2 opacity-70 transition-colors duration-300"
+                                    :class="
+                                        isDark
+                                            ? 'text-gray-400'
+                                            : 'text-gray-600'
+                                    "
+                                >
                                     SRM University • 2022 - Present •
                                     Kattankulathur, Chennai
                                 </p>
-                                <p class="text-sm">
+                                <p
+                                    class="text-sm transition-colors duration-300"
+                                    :class="
+                                        isDark
+                                            ? 'text-gray-300'
+                                            : 'text-gray-700'
+                                    "
+                                >
                                     Specialization in Cloud Computing • CGPA:
                                     9.12/10
                                 </p>
                             </div>
                             <div
-                                class="p-6 rounded-lg transition-colors duration-300"
+                                class="p-6 rounded-lg transition-all duration-300"
                                 :class="[
                                     isDark
                                         ? 'bg-gray-800/50 border border-gray-700'
                                         : 'bg-gray-50 border border-gray-200',
                                 ]"
                             >
-                                <h3 class="font-semibold mb-2">
+                                <h3
+                                    class="font-semibold mb-2 transition-colors duration-300"
+                                    :class="
+                                        isDark ? 'text-white' : 'text-gray-900'
+                                    "
+                                >
                                     Senior Secondary Education
                                 </h3>
-                                <p class="text-sm mb-2 opacity-70">
+                                <p
+                                    class="text-sm mb-2 opacity-70 transition-colors duration-300"
+                                    :class="
+                                        isDark
+                                            ? 'text-gray-400'
+                                            : 'text-gray-600'
+                                    "
+                                >
                                     Sindhi Model Senior Secondary School • 2010
                                     - 2022 • Chennai
                                 </p>
-                                <p class="text-sm">
+                                <p
+                                    class="text-sm transition-colors duration-300"
+                                    :class="
+                                        isDark
+                                            ? 'text-gray-300'
+                                            : 'text-gray-700'
+                                    "
+                                >
                                     XII: 76.8% (PCM & Computer Science) • X:
                                     86.8%
                                 </p>
@@ -532,14 +629,19 @@
                 <aside class="md:col-span-1">
                     <!-- Contact Information -->
                     <section
-                        class="p-6 rounded-lg mb-8 transition-colors duration-300"
+                        class="p-6 rounded-lg mb-8 transition-all duration-300"
                         :class="[
                             isDark
                                 ? 'bg-gray-800/50 border border-gray-700'
                                 : 'bg-gray-50 border border-gray-200',
                         ]"
                     >
-                        <h3 class="font-semibold mb-4">Get In Touch</h3>
+                        <h3
+                            class="font-semibold mb-4 transition-colors duration-300"
+                            :class="isDark ? 'text-white' : 'text-gray-900'"
+                        >
+                            Get In Touch
+                        </h3>
                         <div class="space-y-3">
                             <a
                                 href="mailto:iam.harshnpatel@gmail.com"
@@ -564,7 +666,12 @@
                                 </svg>
                                 iam.harshnpatel@gmail.com
                             </a>
-                            <div class="flex items-center text-sm">
+                            <div
+                                class="flex items-center text-sm transition-colors duration-300"
+                                :class="
+                                    isDark ? 'text-gray-300' : 'text-gray-700'
+                                "
+                            >
                                 <svg
                                     class="w-4 h-4 mr-2"
                                     fill="currentColor"
@@ -576,7 +683,12 @@
                                 </svg>
                                 +91 98401 21224
                             </div>
-                            <div class="flex items-center text-sm">
+                            <div
+                                class="flex items-center text-sm transition-colors duration-300"
+                                :class="
+                                    isDark ? 'text-gray-300' : 'text-gray-700'
+                                "
+                            >
                                 <svg
                                     class="w-4 h-4 mr-2"
                                     fill="currentColor"
@@ -618,14 +730,19 @@
 
                     <!-- Social Links -->
                     <section
-                        class="p-6 rounded-lg mb-8 transition-colors duration-300"
+                        class="p-6 rounded-lg mb-8 transition-all duration-300"
                         :class="[
                             isDark
                                 ? 'bg-gray-800/50 border border-gray-700'
                                 : 'bg-gray-50 border border-gray-200',
                         ]"
                     >
-                        <h3 class="font-semibold mb-4">Connect</h3>
+                        <h3
+                            class="font-semibold mb-4 transition-colors duration-300"
+                            :class="isDark ? 'text-white' : 'text-gray-900'"
+                        >
+                            Connect
+                        </h3>
                         <div class="space-y-3">
                             <a
                                 href="https://github.com/harshpatel5940"
@@ -696,36 +813,46 @@
 
                         <!-- Certifications -->
                         <section class="mt-8">
-                            <h3 class="font-semibold mb-4">Certifications</h3>
-                            <div class="space-y-2 text-sm">
+                            <h3
+                                class="font-semibold mb-4 transition-colors duration-300"
+                                :class="isDark ? 'text-white' : 'text-gray-900'"
+                            >
+                                Certifications
+                            </h3>
+                            <div
+                                class="space-y-2 text-sm transition-colors duration-300"
+                                :class="
+                                    isDark ? 'text-gray-300' : 'text-gray-700'
+                                "
+                            >
                                 <div class="flex items-center">
                                     <span
                                         class="w-2 h-2 bg-green-500 rounded-full mr-2"
-                                    ></span>
+                                    />
                                     OCI Foundations
                                 </div>
                                 <div class="flex items-center">
                                     <span
                                         class="w-2 h-2 bg-green-500 rounded-full mr-2"
-                                    ></span>
+                                    />
                                     Cisco Networking
                                 </div>
                                 <div class="flex items-center">
                                     <span
                                         class="w-2 h-2 bg-green-500 rounded-full mr-2"
-                                    ></span>
+                                    />
                                     ML Foundations
                                 </div>
                                 <div class="flex items-center">
                                     <span
                                         class="w-2 h-2 bg-green-500 rounded-full mr-2"
-                                    ></span>
+                                    />
                                     Data Engineering
                                 </div>
                                 <div class="flex items-center">
                                     <span
                                         class="w-2 h-2 bg-green-500 rounded-full mr-2"
-                                    ></span>
+                                    />
                                     Cloud Architecting
                                 </div>
                             </div>
@@ -734,14 +861,19 @@
 
                     <!-- Resume Download -->
                     <section
-                        class="p-6 rounded-lg transition-colors duration-300"
+                        class="p-6 rounded-lg transition-all duration-300"
                         :class="[
                             isDark
                                 ? 'bg-gray-800/50 border border-gray-700'
                                 : 'bg-gray-50 border border-gray-200',
                         ]"
                     >
-                        <h3 class="font-semibold mb-4">Resume</h3>
+                        <h3
+                            class="font-semibold mb-4 transition-colors duration-300"
+                            :class="isDark ? 'text-white' : 'text-gray-900'"
+                        >
+                            Resume
+                        </h3>
                         <a
                             href="/Harsh-Nikul-Patel_Resume.pdf"
                             download="Harsh_Nikul_Patel.pdf"
@@ -765,29 +897,11 @@
                 </aside>
             </div>
         </main>
-
-        <!-- Footer -->
-        <footer
-            class="border-t mt-16 transition-colors duration-300"
-            :class="isDark ? 'border-gray-700' : 'border-gray-200'"
-        >
-            <div class="max-w-4xl mx-auto px-4 py-8 text-center">
-                <p
-                    class="transition-colors duration-300"
-                    :class="isDark ? 'text-gray-400' : 'text-gray-600'"
-                >
-                    © {{ new Date().getFullYear() }} Harsh Patel. All rights
-                    reserved.
-                </p>
-            </div>
-        </footer>
-    </div>
+    </MainLayout>
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-
-const isDark = ref(false);
+const { isDark } = useTheme();
 
 useHead({
     title: "About Harsh Patel | Full Stack Developer & Computer Science Student",
@@ -978,140 +1092,6 @@ useHead({
         },
     ],
 });
-
-onMounted(() => {
-    initializeTheme();
-});
-
-function initializeTheme() {
-    const savedTheme = localStorage.getItem("theme");
-    isDark.value =
-        savedTheme === "dark" ||
-        (!savedTheme &&
-            window.matchMedia("(prefers-color-scheme: dark)").matches);
-    applyTheme();
-}
-
-function applyTheme() {
-    document.body.className = `portfolio-body ${isDark.value ? "dark" : "light"}`;
-    document.body.style.fontFamily = '"Geist-Regular", sans-serif';
-    document.body.style.margin = "0";
-    document.body.style.padding = "0";
-
-    if (isDark.value) {
-        document.body.style.backgroundColor = "#0a1f0f";
-        document.body.style.backgroundImage =
-            "radial-gradient(circle at 1px 1px, #05fc70 1px, transparent 0)";
-        document.body.style.color = "#ffffff";
-    } else {
-        document.body.style.backgroundColor = "#f0fdf4";
-        document.body.style.backgroundImage =
-            "radial-gradient(circle at 1px 1px, #86efac 1px, transparent 0)";
-        document.body.style.color = "#1a1a1a";
-    }
-
-    document.body.style.backgroundSize = "2rem 2rem";
-    document.body.style.overflow = "auto";
-    document.body.style.overflowX = "hidden";
-
-    localStorage.setItem("theme", isDark.value ? "dark" : "light");
-}
-
-function toggleTheme() {
-    isDark.value = !isDark.value;
-    applyTheme();
-}
 </script>
 
-<style scoped>
-.portfolio-body {
-    font-family:
-        "Geist",
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        sans-serif;
-    background-size: 2rem 2rem;
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    transition: all 0.3s ease;
-}
-
-.about-page {
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
-    height: auto !important;
-}
-
-.portfolio-body.dark {
-    background-color: #0a1f0f;
-    background-image: radial-gradient(
-        circle at 1px 1px,
-        #05fc70 1px,
-        transparent 0
-    );
-    color: #ffffff;
-}
-
-.portfolio-body.light {
-    background-color: #f0fdf4;
-    background-image: radial-gradient(
-        circle at 1px 1px,
-        #86efac 1px,
-        transparent 0
-    );
-    color: #1a1a1a;
-}
-
-/* Theme toggle styles are now handled by Tailwind classes in the template */
-
-.theme-icon-sun {
-    color: #fbbf24;
-}
-
-.theme-icon-moon {
-    color: #64748b;
-}
-
-.prose {
-    color: inherit;
-}
-
-.prose p {
-    margin-bottom: 1rem;
-    line-height: 1.7;
-}
-
-.prose strong {
-    font-weight: 600;
-    color: #22c55e;
-}
-
-.prose-invert strong {
-    color: #4ade80;
-}
-
-html,
-body {
-    overflow-x: hidden;
-}
-
-::-webkit-scrollbar {
-    width: 6px;
-}
-
-::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #22c55e;
-    border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #16a34a;
-}
-</style>
+<style scoped></style>

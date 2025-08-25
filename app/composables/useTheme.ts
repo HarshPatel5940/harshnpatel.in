@@ -1,70 +1,57 @@
 export const useTheme = () => {
-  const theme = ref<"light" | "dark" | "system">("light");
-  const actualTheme = ref<"light" | "dark">("light");
+  const isDark = ref(false);
 
   const initializeTheme = () => {
     if (import.meta.client) {
-      const savedTheme = localStorage.getItem("theme") as
-        | "light"
-        | "dark"
-        | "system";
-      if (savedTheme) {
-        theme.value = savedTheme;
-      }
-      updateActualTheme();
+      const savedTheme = localStorage.getItem("theme");
+      isDark.value =
+        savedTheme === "dark" ||
+        (!savedTheme &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches);
     }
   };
 
-  const updateActualTheme = () => {
+  const applyTheme = () => {
     if (import.meta.client) {
-      if (theme.value === "system") {
-        actualTheme.value = window.matchMedia("(prefers-color-scheme: dark)")
-          .matches
-          ? "dark"
-          : "light";
+      document.body.className = `portfolio-body ${isDark.value ? "dark" : "light"}`;
+      document.body.style.fontFamily = '"Geist-Regular", sans-serif';
+      document.body.style.margin = "0";
+      document.body.style.padding = "0";
+
+      if (isDark.value) {
+        document.body.style.backgroundColor = "#0a1f0f";
+        document.body.style.backgroundImage =
+          "radial-gradient(circle at 1px 1px, #05fc70 1px, transparent 0)";
+        document.body.style.color = "#ffffff";
       } else {
-        actualTheme.value = theme.value;
+        document.body.style.backgroundColor = "#f0fdf4";
+        document.body.style.backgroundImage =
+          "radial-gradient(circle at 1px 1px, #86efac 1px, transparent 0)";
+        document.body.style.color = "#1a1a1a";
       }
 
-      document.documentElement.classList.remove("light", "dark");
-      document.documentElement.classList.add(actualTheme.value);
-    }
-  };
+      document.body.style.backgroundSize = "2rem 2rem";
+      document.body.style.overflow = "auto";
+      document.body.style.overflowX = "hidden";
 
-  const setTheme = (newTheme: "light" | "dark" | "system") => {
-    theme.value = newTheme;
-    if (import.meta.client) {
-      localStorage.setItem("theme", newTheme);
-      updateActualTheme();
+      localStorage.setItem("theme", isDark.value ? "dark" : "light");
     }
   };
 
   const toggleTheme = () => {
-    const themes: ("light" | "dark" | "system")[] = ["light", "dark", "system"];
-    const currentIndex = themes.indexOf(theme.value);
-    const nextIndex = (currentIndex + 1) % themes.length;
-    setTheme(themes[nextIndex]);
+    isDark.value = !isDark.value;
+    applyTheme();
   };
-
-  if (import.meta.client) {
-    window
-      .matchMedia("(prefers-color-scheme: dark)")
-      .addEventListener("change", () => {
-        if (theme.value === "system") {
-          updateActualTheme();
-        }
-      });
-  }
 
   onMounted(() => {
     initializeTheme();
+    applyTheme();
   });
 
   return {
-    theme: readonly(theme),
-    actualTheme: readonly(actualTheme),
-    setTheme,
+    isDark: readonly(isDark),
     toggleTheme,
     initializeTheme,
+    applyTheme,
   };
 };
