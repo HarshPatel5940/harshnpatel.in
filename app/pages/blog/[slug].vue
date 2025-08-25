@@ -675,6 +675,26 @@ function applyTheme() {
     document.body.className = isDark.value
         ? "portfolio-body dark"
         : "portfolio-body light";
+    document.body.style.fontFamily = '"Geist-Regular", sans-serif';
+    document.body.style.margin = "0";
+    document.body.style.padding = "0";
+
+    if (isDark.value) {
+        document.body.style.backgroundColor = "#0a1f0f";
+        document.body.style.backgroundImage =
+            "radial-gradient(circle at 1px 1px, #05fc70 1px, transparent 0)";
+        document.body.style.color = "#ffffff";
+    } else {
+        document.body.style.backgroundColor = "#f0fdf4";
+        document.body.style.backgroundImage =
+            "radial-gradient(circle at 1px 1px, #86efac 1px, transparent 0)";
+        document.body.style.color = "#1a1a1a";
+    }
+
+    document.body.style.backgroundSize = "2rem 2rem";
+    document.body.style.overflow = "auto";
+    document.body.style.overflowX = "hidden";
+
     localStorage.setItem("theme", isDark.value ? "dark" : "light");
 }
 
@@ -761,7 +781,6 @@ if (error.value) {
 </script>
 
 <style>
-
 .portfolio-body {
     font-family:
         "Geist",
@@ -800,10 +819,6 @@ if (error.value) {
     color: #1a1a1a;
 }
 
-
-
-
-
 .blog-post {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
@@ -816,7 +831,6 @@ if (error.value) {
     background: rgba(255, 255, 255, 0.8);
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
-
 
 .prose {
     color: inherit;
@@ -901,7 +915,6 @@ if (error.value) {
     color: inherit !important;
     border-radius: 0;
 }
-
 
 .code-header {
     display: flex;
@@ -1012,12 +1025,10 @@ if (error.value) {
     background: rgba(255, 255, 255, 0.1);
 }
 
-
 html,
 body {
     overflow-x: hidden;
 }
-
 
 .theme-icon-sun {
     filter: brightness(1.3);
@@ -1026,7 +1037,6 @@ body {
 .theme-icon-moon {
     filter: brightness(0.7);
 }
-
 
 ::-webkit-scrollbar {
     width: 6px;

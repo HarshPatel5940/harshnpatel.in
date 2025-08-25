@@ -38,10 +38,14 @@
                         </svg>
                         Back to Home
                     </NuxtLink>
-                    <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-3">
                         <button
-                            class="theme-toggle"
-                            :class="isDark ? '' : 'light'"
+                            class="flex items-center justify-center w-12 h-12 rounded-lg transition-all duration-300 bg-transparent border border-green-500/20 backdrop-blur-sm"
+                            :class="[
+                                isDark
+                                    ? 'text-green-400 hover:text-green-300 hover:bg-green-400/10 hover:border-green-400/40'
+                                    : 'text-green-600 hover:text-green-700 hover:bg-green-600/10 hover:border-green-600/40',
+                            ]"
                             aria-label="Toggle theme"
                             @click="toggleTheme"
                         >
@@ -90,14 +94,31 @@
                         </button>
                         <NuxtLink
                             to="/blog"
-                            class="font-medium transition-colors duration-300"
-                            :class="
+                            class="font-medium transition-all duration-300 flex items-center justify-center w-12 h-12 rounded-lg bg-transparent border border-green-500/20 backdrop-blur-sm"
+                            :class="[
                                 isDark
-                                    ? 'text-gray-400 hover:text-gray-300'
-                                    : 'text-gray-600 hover:text-gray-700'
-                            "
+                                    ? 'text-green-400 hover:text-green-300 hover:bg-green-400/10 hover:border-green-400/40'
+                                    : 'text-green-600 hover:text-green-700 hover:bg-green-600/10 hover:border-green-600/40',
+                            ]"
+                            aria-label="Go to Blog"
                         >
-                            Blog
+                            <svg
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <path d="M12 19l7-7 3 3-7 7-3-3z" />
+                                <path
+                                    d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"
+                                />
+                                <path d="M2 2l7.586 7.586" />
+                                <circle cx="11" cy="11" r="2" />
+                            </svg>
                         </NuxtLink>
                     </div>
                 </div>
@@ -980,7 +1001,7 @@ function applyTheme() {
     if (isDark.value) {
         document.body.style.backgroundColor = "#0a1f0f";
         document.body.style.backgroundImage =
-            "radial-gradient(circle at 1px 1px, #011409 1px, transparent 0)";
+            "radial-gradient(circle at 1px 1px, #05fc70 1px, transparent 0)";
         document.body.style.color = "#ffffff";
     } else {
         document.body.style.backgroundColor = "#f0fdf4";
@@ -990,7 +1011,6 @@ function applyTheme() {
     }
 
     document.body.style.backgroundSize = "2rem 2rem";
-
     document.body.style.overflow = "auto";
     document.body.style.overflowX = "hidden";
 
@@ -1045,37 +1065,7 @@ function toggleTheme() {
     color: #1a1a1a;
 }
 
-.theme-toggle {
-    position: relative;
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    backdrop-filter: blur(10px);
-}
-
-.theme-toggle:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: scale(1.05);
-}
-
-.light .theme-toggle {
-    border-color: rgba(0, 0, 0, 0.2);
-    background: rgba(0, 0, 0, 0.1);
-    color: #1a1a1a;
-}
-
-.light .theme-toggle:hover {
-    background: rgba(0, 0, 0, 0.2);
-}
+/* Theme toggle styles are now handled by Tailwind classes in the template */
 
 .theme-icon-sun {
     color: #fbbf24;
@@ -1103,12 +1093,10 @@ function toggleTheme() {
     color: #4ade80;
 }
 
-
 html,
 body {
     overflow-x: hidden;
 }
-
 
 ::-webkit-scrollbar {
     width: 6px;

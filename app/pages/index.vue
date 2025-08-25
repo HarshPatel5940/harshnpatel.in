@@ -593,12 +593,15 @@ function runAnimations() {
 </template>
 
 <style>
+.portfolio-body.index-page {
+    overflow: hidden;
+}
+
 .portfolio-body {
     font-family: "Geist-Regular", sans-serif !important;
     background-size: 2rem 2rem !important;
     margin: 0 !important;
     padding: 0 !important;
-    overflow: hidden !important;
     min-height: 100vh !important;
     transition: all 0.3s ease !important;
 }
@@ -723,7 +726,6 @@ function runAnimations() {
     }
 }
 
-
 .letter {
     display: inline-block;
     opacity: 0;
@@ -736,7 +738,6 @@ function runAnimations() {
     text-align: center;
 }
 
-
 .letters {
     display: inline-flex;
     align-items: center;
@@ -745,7 +746,6 @@ function runAnimations() {
     max-width: 100%;
     overflow: visible;
 }
-
 
 .part1,
 .part2,
@@ -964,7 +964,6 @@ function runAnimations() {
     background: rgba(0, 0, 0, 0.2);
 }
 
-
 .theme-icon-sun {
     filter: brightness(1.3);
 }
@@ -972,7 +971,6 @@ function runAnimations() {
 .theme-icon-moon {
     filter: brightness(0.7);
 }
-
 
 .top-nav {
     position: fixed;
@@ -1037,7 +1035,6 @@ function runAnimations() {
     }
 }
 
-
 .light .description-text {
     color: #374151;
 }
@@ -1064,7 +1061,6 @@ function runAnimations() {
     border-color: #9ca3af;
     color: #1a1a1a;
 }
-
 
 .light * {
     cursor: default;
