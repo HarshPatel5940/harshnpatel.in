@@ -10,12 +10,49 @@ Crawl-delay: 1
 # Allow important files
 Allow: /rss.xml
 Allow: /sitemap.xml
+Allow: /og-image.png
+Allow: /og-image-blog.png
+Allow: /harshnpatel.jpeg
+Allow: /Harsh-Nikul-Patel_Resume.pdf
+
+# Allow important directories
+Allow: /blog/
+Allow: /about
+
+# Disallow temporary or private files
+Disallow: /_nuxt/
+Disallow: /api/
+Disallow: /.well-known/
 
 # Fast crawling for important content
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 0
+Request-rate: 1/1s
 
 User-agent: Bingbot
 Allow: /
 Crawl-delay: 1
+Request-rate: 1/2s
+
+User-agent: facebookexternalhit
+Allow: /
+Crawl-delay: 0
+
+User-agent: Twitterbot
+Allow: /
+Crawl-delay: 0
+
+User-agent: LinkedInBot
+Allow: /
+Crawl-delay: 1
+
+# Block malicious bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /

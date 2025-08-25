@@ -812,7 +812,7 @@ if (error.value) {
     background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
     background-image: radial-gradient(
         circle at 1px 1px,
-        rgba(255, 255, 255, 0.15) 1px,
+        #05fc70 1px,
         transparent 0
     );
     background-size: 20px 20px;

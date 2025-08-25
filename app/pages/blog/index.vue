@@ -415,25 +415,144 @@ const formatDate = (dateString) => {
 };
 
 useHead({
-    title: "Blog - Harsh Patel",
+    title: "Blog - Harsh Patel | Full Stack Development & Technology Articles",
     meta: [
         {
             name: "description",
             content:
-                "Read my thoughts on development, technology, and programming. Articles about NestJS, Go, TypeScript, and modern web development.",
+                "Read expert insights on full stack development, TypeScript, Go, NestJS, and modern web technologies. Technical articles and tutorials by Harsh Patel.",
         },
         {
+            name: "keywords",
+            content:
+                "Harsh Patel blog, full stack development, TypeScript, Go programming, NestJS, web development, programming tutorials, software engineering, tech articles",
+        },
+        { name: "author", content: "Harsh Nikul Patel" },
+        {
+            name: "robots",
+            content: "index, follow, max-image-preview:large, max-snippet:-1",
+        },
+        { name: "googlebot", content: "index, follow" },
+
+        // Open Graph tags
+        { property: "og:type", content: "website" },
+        {
             property: "og:title",
-            content: "Blog - Harsh Patel",
+            content: "Blog - Harsh Patel | Full Stack Development Articles",
         },
         {
             property: "og:description",
             content:
-                "Read my thoughts on development, technology, and programming.",
+                "Expert insights on full stack development, TypeScript, Go, NestJS, and modern web technologies. Technical articles by Harsh Patel.",
+        },
+        { property: "og:url", content: "https://harshnpatel.in/blog" },
+        { property: "og:site_name", content: "Harsh Patel Blog" },
+        {
+            property: "og:image",
+            content: "https://harshnpatel.in/og-image-blog.png",
+        },
+        { property: "og:image:width", content: "1200" },
+        { property: "og:image:height", content: "630" },
+        {
+            property: "og:image:alt",
+            content: "Harsh Patel Blog - Full Stack Development Articles",
+        },
+        { property: "og:locale", content: "en_US" },
+
+        // Twitter Card tags
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:creator", content: "@harshpatel5940" },
+        { name: "twitter:site", content: "@harshpatel5940" },
+        {
+            name: "twitter:title",
+            content: "Blog - Harsh Patel | Full Stack Development Articles",
         },
         {
-            property: "og:type",
-            content: "website",
+            name: "twitter:description",
+            content:
+                "Expert insights on full stack development, TypeScript, Go, NestJS, and modern web technologies.",
+        },
+        {
+            name: "twitter:image",
+            content: "https://harshnpatel.in/og-image-blog.png",
+        },
+    ],
+    link: [
+        { rel: "canonical", href: "https://harshnpatel.in/blog" },
+        {
+            rel: "alternate",
+            type: "application/rss+xml",
+            title: "Harsh Patel Blog RSS",
+            href: "https://harshnpatel.in/rss.xml",
+        },
+    ],
+    script: [
+        {
+            type: "application/ld+json",
+            innerHTML: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Blog",
+                name: "Harsh Patel Blog",
+                description:
+                    "Expert insights on full stack development, TypeScript, Go, NestJS, and modern web technologies",
+                url: "https://harshnpatel.in/blog",
+                author: {
+                    "@type": "Person",
+                    name: "Harsh Nikul Patel",
+                    url: "https://harshnpatel.in",
+                    sameAs: [
+                        "https://github.com/harshpatel5940",
+                        "https://twitter.com/harshpatel5940",
+                        "https://linkedin.com/in/harshpatel5940",
+                    ],
+                },
+                publisher: {
+                    "@type": "Person",
+                    name: "Harsh Nikul Patel",
+                    url: "https://harshnpatel.in",
+                },
+                inLanguage: "en-US",
+                mainEntity: {
+                    "@type": "ItemList",
+                    numberOfItems: filteredPosts.value?.length || 0,
+                    itemListElement:
+                        filteredPosts.value?.map((post, index) => ({
+                            "@type": "BlogPosting",
+                            position: index + 1,
+                            headline: post.title,
+                            description: post.description,
+                            url: `https://harshnpatel.in/blog/${post.title
+                                .toLowerCase()
+                                .replace(/[^a-z0-9]+/g, "-")
+                                .replace(/^-+|-+$/g, "")}`,
+                            datePublished: post.date,
+                            author: {
+                                "@type": "Person",
+                                name: "Harsh Nikul Patel",
+                            },
+                            publisher: {
+                                "@type": "Person",
+                                name: "Harsh Nikul Patel",
+                            },
+                            keywords: post.tags?.join(", "),
+                            articleSection: post.category,
+                        })) || [],
+                },
+            }),
+        },
+        {
+            type: "application/ld+json",
+            innerHTML: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                name: "Harsh Patel Blog",
+                url: "https://harshnpatel.in/blog",
+                potentialAction: {
+                    "@type": "SearchAction",
+                    target: "https://harshnpatel.in/blog?q={search_term_string}",
+                    "query-input": "required name=search_term_string",
+                },
+            }),
         },
     ],
 });
@@ -461,7 +580,7 @@ useHead({
     background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
     background-image: radial-gradient(
         circle at 1px 1px,
-        rgba(255, 255, 255, 0.15) 1px,
+        #05fc70 1px,
         transparent 0
     );
     background-size: 20px 20px;

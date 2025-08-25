@@ -1,5 +1,5 @@
 export const useTheme = () => {
-  const theme = ref<"light" | "dark" | "system">("system");
+  const theme = ref<"light" | "dark" | "system">("light");
   const actualTheme = ref<"light" | "dark">("light");
 
   const initializeTheme = () => {

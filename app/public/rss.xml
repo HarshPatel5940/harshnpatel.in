@@ -3,17 +3,39 @@
   <channel>
     <title><![CDATA[Harsh Patel - Blog]]></title>
     <description><![CDATA[Software developer and tech enthusiast specializing in full-stack development, cloud computing, and open-source projects.]]></description>
-    <link>https://harshnpatel.in</link>
+    <link>https://harshnpatel.in/blog</link>
     <atom:link href="https://harshnpatel.in/rss.xml" rel="self" type="application/rss+xml"/>
-    <language>en</language>
-    <lastBuildDate>Sun, 24 Aug 2025 10:07:47 GMT</lastBuildDate>
+    <language>en-US</language>
+    <lastBuildDate>Mon, 25 Aug 2025 06:47:03 GMT</lastBuildDate>
     <managingEditor>hi@harshnpatel.in (Harsh Patel)</managingEditor>
     <webMaster>hi@harshnpatel.in (Harsh Patel)</webMaster>
     <generator>Nuxt.js Static Site Generator</generator>
+    <category>Technology</category>
+    <category>Software Development</category>
+    <category>Programming</category>
     <image>
       <url>https://harshnpatel.in/og-image.png</url>
       <title><![CDATA[Harsh Patel - Blog]]></title>
-      <link>https://harshnpatel.in</link>
+      <link>https://harshnpatel.in/blog</link>
+      <width>1200</width>
+      <height>630</height>
     </image>
+    <ttl>1440</ttl>
+    <item>
+      <title><![CDATA[Building Scalable APIs with NestJS: A Complete Guide]]></title>
+      <description><![CDATA[Learn how to build robust and scalable APIs using NestJS framework with TypeScript, including best practices for authentication, validation, and database integration.]]></description>
+      <link>https://harshnpatel.in/blog/building-scalable-apis-with-nestjs-a-complete-guide</link>
+      <guid isPermaLink="true">https://harshnpatel.in/blog/building-scalable-apis-with-nestjs-a-complete-guide</guid>
+      <pubDate>Fri, 15 Mar 2024 00:00:00 GMT</pubDate>
+      <author>hi@harshnpatel.in (Harsh Patel)</author>
+    </item>
+    <item>
+      <title><![CDATA[Go vs Node.js: Choosing the Right Backend Technology]]></title>
+      <description><![CDATA[A detailed comparison between Go and Node.js for backend development, covering performance, scalability, ecosystem, and use cases.]]></description>
+      <link>https://harshnpatel.in/blog/go-vs-node-js-choosing-the-right-backend-technology</link>
+      <guid isPermaLink="true">https://harshnpatel.in/blog/go-vs-node-js-choosing-the-right-backend-technology</guid>
+      <pubDate>Wed, 28 Feb 2024 00:00:00 GMT</pubDate>
+      <author>hi@harshnpatel.in (Harsh Patel)</author>
+    </item>
   </channel>
 </rss>

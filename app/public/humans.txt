@@ -1,0 +1,53 @@
+/* TEAM */
+    Developer: Harsh Nikul Patel
+    Contact: hi [at] harshnpatel.in
+    Twitter: @harshpatel5940
+    GitHub: @harshpatel5940
+    LinkedIn: linkedin.com/in/harshpatel5940
+    Location: India
+
+/* SITE */
+    Last update: 2024/12/19
+    Language: English
+    Doctype: HTML5
+    Framework: Nuxt.js 3
+    CSS Framework: Tailwind CSS, UnoCSS
+    Backend: Node.js, TypeScript
+    Content Management: Nuxt Content
+    Hosting: Vercel/Netlify
+    IDE: VS Code
+
+/* THANKS */
+    Open Source Community
+    Vue.js Team
+    Nuxt.js Team
+    Tailwind CSS Team
+    TypeScript Team
+    GitHub Community
+
+/* TECHNOLOGIES */
+    Frontend: Vue.js, Nuxt.js, TypeScript, Tailwind CSS
+    Backend: Node.js, Go, NestJS
+    Database: PostgreSQL, MongoDB, Redis
+    Cloud: AWS, Google Cloud Platform
+    DevOps: Docker, GitHub Actions
+    Design: Figma, Adobe Creative Suite
+
+/* CONTACT */
+    Website: https://harshnpatel.in
+    Email: hi@harshnpatel.in
+    Calendar: https://cal.com/harshnpatel
+    RSS: https://harshnpatel.in/rss.xml
+
+/* LEGAL */
+    Copyright: © 2024 Harsh Nikul Patel
+    License: All rights reserved
+    Privacy: No tracking, no cookies for analytics
+    Open Source: Selected components available on GitHub
+
+/* META */
+    Standards: HTML5, CSS3, ES2022+, Web Accessibility Guidelines
+    Performance: Lighthouse Score 95+
+    SEO: Structured Data, Open Graph, Twitter Cards
+    Progressive: Service Worker ready
+    Mobile: Responsive design, touch-friendly
