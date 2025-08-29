@@ -313,7 +313,7 @@ function runAnimations() {
 
     const tl = window.anime.timeline({
         easing: "easeOutExpo",
-        duration: 1000,
+        duration: 500,
     });
 
     tl.add({
@@ -324,38 +324,38 @@ function runAnimations() {
         opacity: [0, 1],
         scale: [0.8, 1],
         easing: "easeOutExpo",
-        duration: 1200,
-        delay: window.anime.stagger(30, { start: 500 }),
+        duration: 600,
+        delay: window.anime.stagger(15, { start: 200 }),
     })
         .add({
             targets: line,
             scaleX: [0, 1],
             opacity: [0.5, 1],
             easing: "easeOutExpo",
-            duration: 700,
-            offset: "-=875",
+            duration: 350,
+            offset: "-=450",
         })
         .add({
             targets: line,
             translateX: [0, letters.scrollWidth],
             easing: "easeOutExpo",
-            duration: 700,
-            delay: 100,
+            duration: 350,
+            delay: 50,
         })
         .add({
             targets: line,
             translateX: [letters.scrollWidth, part1.offsetWidth],
             easing: "easeInOutExpo",
-            duration: 600,
-            delay: 200,
+            duration: 300,
+            delay: 100,
         })
         .add({
             targets: part2,
             width: [0, part2Width],
             opacity: [0, 1],
             easing: "easeInOutExpo",
-            duration: 800,
-            offset: "-=600",
+            duration: 400,
+            offset: "-=300",
         })
         .add({
             targets: ".part2 .letter",
@@ -363,21 +363,21 @@ function runAnimations() {
             scale: [0.8, 1],
             opacity: [0, 1],
             easing: "easeInOutExpo",
-            duration: 600,
-            delay: window.anime.stagger(80),
-            offset: "-=800",
+            duration: 300,
+            delay: window.anime.stagger(40),
+            offset: "-=400",
         })
         .add({
             targets: line,
             translateX: () => [part1.offsetWidth, letters.scrollWidth + 20],
             easing: "easeOutExpo",
-            duration: 700,
-            delay: 100,
+            duration: 350,
+            delay: 50,
         })
         .add({
             targets: line,
             opacity: 0,
-            duration: 500,
+            duration: 250,
             easing: "easeOutExpo",
         })
         .add(
@@ -385,31 +385,31 @@ function runAnimations() {
                 targets: "#description",
                 opacity: [0, 1],
                 translateY: [30, 0],
-                duration: 1000,
+                duration: 500,
                 easing: "easeOutExpo",
             },
-            "-=300",
+            "-=150",
         )
         .add(
             {
                 targets: ".description-text",
                 opacity: [0, 1],
                 translateY: [20, 0],
-                duration: 600,
-                delay: window.anime.stagger(200),
+                duration: 300,
+                delay: window.anime.stagger(100),
                 easing: "easeOutExpo",
             },
-            "-=800",
+            "-=400",
         )
         .add(
             {
                 targets: "#social-buttons",
                 opacity: [0, 1],
                 translateY: [20, 0],
-                duration: 800,
+                duration: 400,
                 easing: "easeOutExpo",
             },
-            "-=400",
+            "-=200",
         )
         .add(
             {
@@ -417,11 +417,11 @@ function runAnimations() {
                 opacity: [0, 1],
                 translateY: [20, 0],
                 scale: [0.9, 1],
-                duration: 400,
-                delay: window.anime.stagger(100),
+                duration: 200,
+                delay: window.anime.stagger(50),
                 easing: "easeOutExpo",
             },
-            "-=600",
+            "-=300",
         );
 }
 </script>
