@@ -486,7 +486,7 @@ function runAnimations() {
                     </svg>
                     Blog
                 </NuxtLink>
-                <button
+                <!-- <button
                     class="theme-toggle"
                     :title="
                         isDark
@@ -537,7 +537,7 @@ function runAnimations() {
                             fill="currentColor"
                         />
                     </svg>
-                </button>
+                </button> -->
             </div>
 
             <!-- Description text -->

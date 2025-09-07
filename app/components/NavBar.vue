@@ -130,7 +130,7 @@
                     </a>
 
                     <!-- Theme Toggle -->
-                    <button
+                    <!-- <button
                         class="navbar-icon-link navbar-theme-toggle"
                         :class="isDark ? 'dark' : 'light'"
                         title="Toggle Theme"
@@ -179,7 +179,7 @@
                         <span class="navbar-tooltip">
                             {{ isDark ? "Light Mode" : "Dark Mode" }}
                         </span>
-                    </button>
+                    </button> -->
                 </nav>
             </div>
         </div>
