@@ -4,7 +4,6 @@
         <Hero />
         <About />
         <Skills />
-        <Projects />
         <Contact />
         <Footer />
         <ScrollToTop />

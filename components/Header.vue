@@ -18,11 +18,6 @@
                         >About</a
                     >
                     <a
-                        href="#projects"
-                        class="hover:text-primary transition-colors"
-                        >Projects</a
-                    >
-                    <a
                         href="#skills"
                         class="hover:text-primary transition-colors"
                         >Skills</a

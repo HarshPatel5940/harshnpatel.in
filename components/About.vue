@@ -14,15 +14,23 @@
                             <p>
                                 I am a senior year undergrad dedicated to the
                                 pursuit of a Computer Science and Engineering
-                                degree, backed by a formidable four-year
-                                freelance tenure as a Backend and Bot Developer.
+                                degree, backed by a formidable
+                                <span class="font-bold text-primary"
+                                    >four-year freelance tenure</span
+                                >
+                                as a Backend and Bot Developer.
                             </p>
                             <p>
-                                Currently, I write code and have fun in Golang &
-                                TypeScript. My relentless enthusiasm for
+                                Currently, I write code and have fun in
+                                <span class="font-bold text-primary"
+                                    >Golang</span
+                                >
+                                & TypeScript. My relentless enthusiasm for
                                 cutting-edge technologies and my commitment to
-                                open source initiatives propel my journey in
-                                this field.
+                                <span class="font-bold text-primary"
+                                    >open source initiatives</span
+                                >
+                                propel my journey in this field.
                             </p>
                             <p>
                                 As a Freelance Developer, I have had the
@@ -64,10 +72,18 @@
                                 target="_blank"
                                 class="flex items-center space-x-3"
                             >
-                                <img
-                                    src="/fiverr.svg"
-                                    class="h-5 w-5 text-primary"
-                                />
+                                <svg
+                                    class="h-5 w-5 fill-primary"
+                                    version="1.2"
+                                    baseProfile="tiny-ps"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 1396 1769"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M227.04 1768.31L621.05 1768.31L621.05 874.13L1001.69 874.13L1001.69 1768.31L1395.7 1768.31L1395.7 540.5L621.05 540.5L621.05 467.1C621.05 387.04 681.15 333.63 767.96 333.63L1001.69 333.63L1001.69 0L707.86 0C420.72 0 227.04 180.17 227.04 440.42L227.04 540.5L0 540.5L0 874.13L227.04 874.13L227.04 1768.31Z"
+                                    />
+                                </svg>
                                 <span>Fiverr</span>
                             </a>
                             <a
