@@ -35,24 +35,34 @@
                         </h1>
                     </BlurReveal>
                 </ClientOnly>
-                <div class="flex flex-wrap justify-center gap-4 mb-8">
-                    <Button
-                        variant="ghost"
-                        v-for="(title, index) in personal.personal.titleArr"
-                        :key="index"
-                    >
-                        <CardContent
-                            class="p-4 flex items-center justify-center"
-                        >
-                            <p class="text-lg font-semibold">{{ title }}</p>
-                        </CardContent>
+                <div class="flex flex-wrap justify-center gap-4 mb-4">
+                    <Button variant="ghost">
+                        <p class="text-md font-semibold">FOSS Enthusiast</p>
+                    </Button>
+                    <Button variant="ghost">
+                        <p class="text-md font-semibold">
+                            Co-Founder @
+                            <a
+                                href="https://limegreen.studio"
+                                class="text-md font-semibold"
+                            >
+                                LimeGreen.studio
+                            </a>
+                        </p>
                     </Button>
                 </div>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Button size="lg" asChild>
-                        <a href="#projects">View My Projects</a>
+                    <Button size="lg">
+                        <a
+                            href="https://github.com/harshpatel5940"
+                            class="flex items-center space-x-2"
+                        >
+                            <Github class="h-5 w-5 text-white" />
+                            <span>My Projects</span>
+                        </a>
                     </Button>
-                    <Button variant="outline" size="lg" asChild>
+
+                    <Button variant="outline" size="lg">
                         <a
                             href="/Harsh-Nikul-Patel_Resume.pdf"
                             download="Harsh-Nikul-Patel_Resume.pdf"
@@ -68,5 +78,6 @@
 </template>
 
 <script lang="ts" setup>
+import { Github } from "lucide-vue-next";
 import personal from "../content/personal.json";
 </script>
