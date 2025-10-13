@@ -36,6 +36,19 @@ useHead({
             content: personal.seo.description,
         },
         { property: "og:type", content: "website" },
+        { property: "og:url", content: "https://harshnpatel.in" },
+        {
+            property: "og:image",
+            content: "https://harshnpatel.in/harshnpatel.jpeg",
+        },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:creator", content: "@harshpatel5940" },
+        { name: "twitter:title", content: personal.seo.title },
+        { name: "twitter:description", content: personal.seo.description },
+        {
+            name: "twitter:image",
+            content: "https://harshnpatel.in/harshnpatel.jpeg",
+        },
     ],
     link: [
         {
@@ -59,10 +72,6 @@ useHead({
         })();
       `,
             type: "text/javascript",
-        },
-        {
-            src: "https://tweakcn.com/live-preview.min.js",
-            defer: true,
         },
     ],
 });
