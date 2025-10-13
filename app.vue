@@ -64,6 +64,10 @@ useHead({
             rel: "apple-touch-icon",
             href: "/harshnpatel.jpeg",
         },
+        {
+            rel: "canonical",
+            href: "https://harshnpatel.in",
+        },
     ],
     script: [
         {
@@ -80,6 +84,50 @@ useHead({
         })();
       `,
             type: "text/javascript",
+        },
+        {
+            type: "application/ld+json",
+            innerHTML: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Person",
+                name: personal.personal.name,
+                url: "https://harshnpatel.in",
+                image: "https://harshnpatel.in/harshnpatel.jpeg",
+                email: personal.personal.email,
+                jobTitle: "SDE",
+                description: personal.seo.description,
+                alumniOf: {
+                    "@type": "Organization",
+                    name: "SRM Institute of Science and Technology",
+                },
+                sameAs: [
+                    personal.links.github,
+                    personal.links.linkedin,
+                    personal.links.twitter,
+                    personal.links.fiverr,
+                ],
+                knowsAbout: [
+                    "Full Stack Development",
+                    "Cloud Computing",
+                    "TypeScript",
+                    "Go",
+                    "Open Source Software",
+                ],
+            }),
+        },
+        {
+            type: "application/ld+json",
+            innerHTML: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                name: "Harsh Nikul Patel Portfolio",
+                url: "https://harshnpatel.in",
+                description: personal.seo.description,
+                author: {
+                    "@type": "Person",
+                    name: personal.personal.name,
+                },
+            }),
         },
     ],
 });

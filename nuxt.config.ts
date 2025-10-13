@@ -10,12 +10,29 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
   },
 
-  modules: ["shadcn-nuxt", "@nuxtjs/color-mode", "@nuxt/devtools"],
+  modules: [
+    "shadcn-nuxt",
+    "@nuxtjs/color-mode",
+    "@nuxt/devtools",
+    "@nuxtjs/sitemap",
+  ],
+
+  site: {
+    url: "https://harshnpatel.in",
+    name: "Harsh N Patel | Portfolio",
+  },
+
+  sitemap: {
+    urls: [
+      {
+        loc: "/",
+        changefreq: "monthly",
+        priority: 1.0,
+      },
+    ],
+  },
 
   shadcn: {
-    /**
-     * Prefix for all the imported component
-     */
     prefix: "",
     /**
      * Directory that the component lives in.
