@@ -1,3 +1,10 @@
 {
-  "extends": "./.nuxt/tsconfig.json"
+  // https://nuxt.com/docs/guide/concepts/typescript
+  "extends": "./.nuxt/tsconfig.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.tsbuildinfo",
+    "paths": {
+      "@/*": ["./*"]
+    }
+  }
 }
