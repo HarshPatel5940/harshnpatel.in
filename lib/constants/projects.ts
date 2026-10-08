@@ -1,87 +1,149 @@
+// Evidence: supplied resume plus public GitHub READMEs, reviewed 2026-10-08.
+// Studio work is attributed separately in studio.ts; do not imply sole authorship.
 export interface Project {
+  id: string;
   title: string;
+  category: string;
   description: string;
   stack: string[];
-  demo?: string;
   code: string;
-  image?: string;
-  gradient: string;
-  icon: string;
+  companion?: { label: string; url: string };
+  accent: string;
+  symbol: string;
+  contribution: string;
+  details: string[];
 }
 
 export const projects: Project[] = [
   {
-    title: "Cucumber Chad DApp",
+    id: "stash",
+    title: "Stash",
+    category: "Systems tooling",
     description:
-      "A decentralized gaming application integrating LINE Messaging with Kaia blockchain for TicTacToe gameplay, NFT minting, and token rewards.",
-    stack: [
-      "Vue.js",
-      "Vite",
-      "TypeScript",
-      "Kaia Blockchain",
-      "LINE LIFF",
-      "Ethers.js",
+      "Encrypted backup and selective recovery for a macOS development setup.",
+    stack: ["Go", "age encryption", "macOS", "CLI"],
+    code: "https://github.com/HarshPatel5940/stash",
+    accent: "green",
+    symbol: "stash_",
+    contribution: "Open-source developer tool",
+    details: [
+      "Brings dotfiles, development secrets, packages, Git repositories, and system preferences into one backup workflow.",
+      "Uses age encryption and separate key storage, with dry-run previews and selective restore controls. Distributed through Homebrew and Go.",
     ],
-    code: "https://github.com/joebertcerezo/cucumber-chad-dapp-vue/tree/develop",
-    image: "images/cucumberChad.png",
-    gradient: "from-emerald-500 to-cyan-600",
-    icon: "Gamepad2",
   },
   {
-    title: "File2IPFS",
+    id: "nestop",
+    title: "nestop",
+    category: "Developer experience",
     description:
-      "A decentralized file storage application using IPFS (InterPlanetary File System) for secure, distributed file sharing and storage.",
-    stack: ["Nuxt.js", "Vue.js", "TypeScript", "Tailwind CSS", "Pinata API"],
-    code: "https://github.com/joebertcerezo/File2IPFS",
-    image: "images/file2ipfs.png",
-    gradient: "from-purple-500 to-blue-600",
-    icon: "Database",
+      "An interactive Go CLI for scaffolding a NestJS project around its requirements.",
+    stack: ["Go", "NestJS", "Charmbracelet", "Docker"],
+    code: "https://github.com/HarshPatel5940/nestop",
+    accent: "orange",
+    symbol: "> init",
+    contribution: "Open-source CLI",
+    details: [
+      "Guides setup of HTTP adapters, databases, ORMs, storage, caching, and test frameworks through an interactive terminal interface.",
+      "Generates project configuration, optional health and authentication endpoints, and Docker assets rather than starting every backend from scratch.",
+    ],
   },
   {
-    title: "UnggoyType",
+    id: "verse",
+    title: "Verse",
+    category: "Meeting tools",
     description:
-      "An interactive typing speed test application with real-time WPM tracking, accuracy metrics, and customizable test parameters.",
-    stack: ["HTML", "CSS", "JavaScript", "Web APIs"],
-    code: "https://github.com/joebertcerezo/UnggoyType",
-    image: "images/unggoyType.png",
-    gradient: "from-green-500 to-teal-600",
-    icon: "Keyboard",
+      "A meeting transcription and insights project, developed to the MVP stage.",
+    stack: ["TypeScript", "Transcription", "Meeting insights"],
+    code: "https://github.com/ProgrammingNotJustCoding/verse",
+    accent: "blue",
+    symbol: "voice_",
+    contribution: "MVP · ProgrammingNotJustCoding",
+    details: [
+      "Built around voice transcription and meeting summaries, with fog computing described in my public project overview.",
+      "Published as an MVP under ProgrammingNotJustCoding; the public repository links to the implementation.",
+    ],
   },
   {
-    title: "Flutter Pokedex",
+    id: "codeflick",
+    title: "CodeFlick",
+    category: "Developer tools",
     description:
-      "A comprehensive Pokemon encyclopedia mobile app with detailed Pokemon information, search functionality, and beautiful UI design.",
-    stack: ["Flutter", "Dart", "REST API", "Provider"],
-    code: "https://github.com/joebertcerezo/flutter_pokedex",
-    gradient: "from-red-500 to-yellow-600",
-    icon: "Smartphone",
+      "A place for developers to share code and collaborate on Gists.",
+    stack: ["Go", "Vue"],
+    code: "https://github.com/HarshPatel5940/CodeFlick",
+    accent: "orange",
+    symbol: "{ }",
+    contribution: "Designed & implemented",
+    details: [
+      "Built the platform primarily in Go, with Vue powering the frontend.",
+      "Connected a developer-facing interface with the backend for sharing and collaborating on code.",
+    ],
   },
   {
-    title: "Exam Management System",
-    description:
-      "A comprehensive Spring Boot application for managing online examinations with user authentication, exam creation, and result tracking.",
-    stack: ["Spring Boot", "Java", "JPA", "MySQL"],
-    code: "https://github.com/joebertcerezo/spring-boot-exam-portal",
-    gradient: "from-blue-500 to-indigo-600",
-    icon: "BookOpen",
+    id: "dhb",
+    title: "DHB V2",
+    category: "Bots & automation",
+    description: "Moderation, music, and everyday utilities inside Discord.",
+    stack: ["TypeScript", "Discord.js v14", "Lavalink"],
+    code: "https://github.com/HarshPatel5940/dhb-v2",
+    accent: "purple",
+    symbol: "/play",
+    contribution: "Built the Discord bot",
+    details: [
+      "Implemented moderation, music playback, and utility commands in TypeScript.",
+      "Integrated Lavalink for music functionality, building on earlier bot work for freelance clients.",
+    ],
   },
   {
-    title: "Flutter Chat App",
+    id: "marai",
+    title: "Marai",
+    category: "Workflow systems",
     description:
-      "Real-time messaging application built with Flutter, featuring user authentication, chat rooms, and modern Material Design UI.",
-    stack: ["Flutter", "Dart", "Firebase", "Material UI"],
-    code: "https://github.com/joebertcerezo/flutter_chat_app",
-    gradient: "from-pink-500 to-rose-600",
-    icon: "MessageCircle",
+      "Legal workflows, from contract management to digital signatures.",
+    stack: ["Go", "Echo", "MinIO", "Twilio"],
+    code: "https://github.com/ProgrammingNotJustCoding/marai",
+    accent: "green",
+    symbol: "sign()",
+    contribution: "Backend & integration",
+    details: [
+      "Spearheaded development of a legal workflow platform covering contract lifecycle management, custom digital signatures, and encryption.",
+      "Contributed to the Go backend and its integrations using Echo, MinIO, and Twilio.",
+    ],
   },
   {
-    title: "CheckMe Attendance System",
+    id: "keyshade",
+    title: "Keyshade",
+    category: "Open source",
     description:
-      "An automated attendance tracking system with QR code scanning, real-time monitoring, and comprehensive reporting features.",
-    stack: ["Vue.js", "PHP", "MySQL", "QR Code"],
-    code: "https://github.com/joebertcerezo/CheckMe",
-    image: "/images/checkme_login.png",
-    gradient: "from-orange-500 to-red-600",
-    icon: "QrCode",
+      "Contributions across authentication, storage, and developer tooling.",
+    stack: ["GitHub OAuth", "MinIO", "Sentry"],
+    code: "https://github.com/keyshade-xyz/keyshade",
+    accent: "blue",
+    symbol: "git +",
+    contribution: "Open-source contributor",
+    details: [
+      "Reported 5+ bugs and worked on the pricing page, MinIO client integration, and GitHub OAuth.",
+      "Implemented Sentry, cleaned up Husky scripts, enabled optional GitHub module loading, and automated admin creation on startup.",
+    ],
+  },
+  {
+    id: "ezms",
+    title: "EzMs",
+    category: "Full-stack development",
+    description:
+      "A CMS built to explore the backend and frontend as one system.",
+    stack: ["NestJS", "React", "TypeScript", "Prisma", "Supabase"],
+    code: "https://github.com/HarshPatel5940/EzMs",
+    companion: {
+      label: "Frontend source",
+      url: "https://github.com/HarshPatel5940/EzMs-Frontend",
+    },
+    accent: "orange",
+    symbol: "API",
+    contribution: "Backend & frontend",
+    details: [
+      "Developed the CMS API in NestJS and TypeScript, exploring Supabase, caching, testing, Prisma, and CI/CD.",
+      "Built the accompanying React and TypeScript frontend to deepen experience across the full stack.",
+    ],
   },
 ];

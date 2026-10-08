@@ -2,12 +2,12 @@
   "personal": {
     "name": "Harsh Nikul Patel",
     "name_short": "Harsh Patel",
-    "title": "FOSS Enthusiast • Co-Founder @ LimeGreen.studio • FreeLance Developer",
-    "titleArr": ["FOSS Enthusiast", "Co-Founder @ LimeGreen.studio"],
+    "title": "FOSS Enthusiast • Founder @ LimeGreen.studio • FreeLance Developer",
+    "titleArr": ["FOSS Enthusiast", "Founder @ LimeGreen.studio"],
     "tagline": "Hello there! I am Harsh Patel",
     "location": "India",
     "email": "hi@harshnpatel.in",
-    "description": "Software Freak & Tech Enthusiast studying BTech CSE w/s in Cloud Computing @ SRM'26"
+    "description": "Software developer building backend systems, web products, and automation with Go and TypeScript."
   },
   "bio": {
     "education": "Studying Btech CSE w/s in Cloud Computing @ SRM'26",
@@ -23,8 +23,8 @@
     "github": "https://github.com/HarshPatel5940"
   },
   "seo": {
-    "title": "Harsh Nikul Patel - FOSS Enthusiast • Co-Founder @ LimeGreen.studio • FreeLance Developer",
-    "description": "Software developer and tech enthusiast specializing in full-stack development, cloud computing, and open-source projects. Currently studying BTech CSE at SRM University.",
+    "title": "Harsh Nikul Patel - FOSS Enthusiast • Founder @ LimeGreen.studio • FreeLance Developer",
+    "description": "Harsh Patel: software developer and LimeGreen.studio founder. Explore Stash, nestop, web products, automation, and open-source contributions.",
     "keywords": "Harsh Nikul Patel, Software Developer, Full Stack Developer, Student, Freelancer, TypeScript, Go, Node.js, Cloud Computing",
     "author": "Harsh Nikul Patel"
   }

@@ -1,102 +1,58 @@
-<template>
-    <!-- Navigation -->
-    <nav
-        class="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b"
-    >
-        <div class="container mx-auto px-6 py-4 w-full">
-            <div class="flex items-center justify-between">
-                <div class="text-xl font-bold">
-                    {{ personal.personal.name }}
-                </div>
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#home" class="hover:text-primary transition-colors"
-                        >Home</a
-                    >
-                    <a
-                        href="#about"
-                        class="hover:text-primary transition-colors"
-                        >About</a
-                    >
-                    <a
-                        href="#skills"
-                        class="hover:text-primary transition-colors"
-                        >Skills</a
-                    >
-                    <a
-                        href="#contact"
-                        class="hover:text-primary transition-colors"
-                        >Contact</a
-                    >
-                    <ThemeToggle />
-                </div>
-                <div class="flex items-center space-x-2 md:hidden">
-                    <ThemeToggle />
-                    <Button
-                        variant="outline"
-                        size="sm"
-                        @click="toggleMobileMenu"
-                    >
-                        <Menu v-if="!isMobileMenuOpen" class="h-4 w-4" />
-                        <X v-else class="h-4 w-4" />
-                    </Button>
-                </div>
-            </div>
-
-            <!-- Mobile Menu -->
-            <div
-                v-if="isMobileMenuOpen"
-                class="md:hidden mt-4 pb-4 border-t pt-4"
-            >
-                <div class="flex flex-col space-y-4">
-                    <a
-                        href="#home"
-                        @click="closeMobileMenu"
-                        class="hover:text-primary transition-colors"
-                        >Home</a
-                    >
-                    <a
-                        href="#about"
-                        @click="closeMobileMenu"
-                        class="hover:text-primary transition-colors"
-                        >About</a
-                    >
-                    <a
-                        href="#projects"
-                        @click="closeMobileMenu"
-                        class.hover="text-primary transition-colors"
-                        >Projects</a
-                    >
-                    <a
-                        href="#skills"
-                        @click="closeMobileMenu"
-                        class="hover:text-primary transition-colors"
-                        >Skills</a
-                    >
-                    <a
-                        href="#contact"
-                        @click="closeMobileMenu"
-                        class="hover:text-primary transition-colors"
-                        >Contact</a
-                    >
-                </div>
-            </div>
-        </div>
-    </nav>
-</template>
-
-<script lang="ts" setup>
+<script setup lang="ts">
 import { Menu, X } from "lucide-vue-next";
-import ThemeToggle from "@/components/ThemeToggle.vue";
-import personal from "../content/personal.json";
-
-// Mobile menu state
+import personal from "~/content/personal.json";
 const isMobileMenuOpen = ref(false);
-
-const toggleMobileMenu = () => {
-    isMobileMenuOpen.value = !isMobileMenuOpen.value;
-};
-
-const closeMobileMenu = () => {
-    isMobileMenuOpen.value = false;
-};
+const menuButton = ref<{ $el: HTMLButtonElement } | null>(null);
+const links = [
+  { href: "#projects", label: "Work" },
+  { href: "#experience", label: "Experience" },
+  { href: "#contact", label: "Contact" },
+];
+function closeMenu(event?: KeyboardEvent) {
+  isMobileMenuOpen.value = false;
+  if (event?.key === "Escape") menuButton.value?.$el.focus();
+}
 </script>
+
+<template>
+  <header class="site-header" @keydown.esc="closeMenu">
+    <nav class="portfolio-container header-inner" aria-label="Main navigation">
+      <a href="#home" class="site-wordmark" @click="closeMenu()"
+        ><span class="site-monogram">hp.</span
+        ><span>{{ personal.personal.name_short }}</span></a
+      >
+      <div class="desktop-nav">
+        <a v-for="link in links" :key="link.href" :href="link.href">{{
+          link.label
+        }}</a>
+      </div>
+      <div class="header-controls">
+        <ThemeToggle /><Button
+          ref="menuButton"
+          class="mobile-menu-toggle"
+          variant="outline"
+          size="icon"
+          :aria-expanded="isMobileMenuOpen"
+          aria-controls="mobile-navigation"
+          :aria-label="
+            isMobileMenuOpen ? 'Close navigation' : 'Open navigation'
+          "
+          @click="isMobileMenuOpen = !isMobileMenuOpen"
+          ><X v-if="isMobileMenuOpen" :size="18" aria-hidden="true" /><Menu
+            v-else
+            :size="18"
+            aria-hidden="true"
+        /></Button>
+      </div>
+      <div v-if="isMobileMenuOpen" id="mobile-navigation" class="mobile-nav">
+        <a
+          v-for="link in links"
+          :key="link.href"
+          :href="link.href"
+          @click="closeMenu()"
+          >{{ link.label }}</a
+        >
+      </div>
+    </nav>
+  </header>
+</template>
